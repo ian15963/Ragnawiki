@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AquaTech | Login</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="login-container">
+            <div class="container">
+                <h1>Login</h1>
+                    <label for="email">Email: </label><br>
+                    <input type="text" id="email"><br>
+                    <label for="senha">Senha: </label><br>
+                    <input type="password" id="senha">
+            </div>
+            <p style="margin-bottom: 10px; font-size: 13px;">Não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            <button onclick="entrar()">Entrar</button>
+        </div>
+    </div>
+    
+
+    
+</body>
+
+</html>
+
+<script>
+
+
+    function entrar() {
+
+        var emailUsuario = email.value;
+        var senhaUsuario = senha.value;
+
+        fetch("/usuarios/autenticar" ,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailUsuario,
+                senhaServer: senhaUsuario
+            })
+        }).then((data) => {            
+            if(data.ok){
+                data.json().then(
+                    json => {
+                        sessionStorage.setItem("autenticado" ,json.autenticado)
+                });
+                setTimeout(() => {
+                    window.location.href = "index.html"
+                }, 1000)
+            }else{
+                console.log("Não foi possível autenticar o usuário, verifique se o email ou senha inseridos são validos")
+            }
+        }).catch(err => console.log(err))
+    }
+
+
+</script>
