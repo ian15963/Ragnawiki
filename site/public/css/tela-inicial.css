@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.header{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.header h1{
+    margin: 0 0 0 30px;
+    color: #00259C;
+}
+
+.header .navbar{
+    margin: 0 30px 0 0;
+}
+
+.header .navbar a{
+    font-size: 20px;
+    text-decoration: none;
+    color: #00259C;
+    margin-right: 5px;
+}
+
+.content{
+    background-image: url(../assets/imgs/TelaInicial.png);
+    width: 100%;
+    height: 450px;
+    background-size: 100%;
+}
+
+.carrossel{
+    height: 300px;
+    background-color: black;
+}
+
+.carrossel .fotos{
+    width: 300%;
+    animation-name: animação;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+}
+
+.carrossel .fotos .image img{
+    width: 10%;
+}
