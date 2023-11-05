@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.header h1{
+    margin: 0 0 0 30px;
+    color: #00259C;
+}
+
+.header .navbar{
+    margin: 0 30px 0 0;
+}
+
+.header .navbar a{
+    font-size: 20px;
+    text-decoration: none;
+    color: #00259C;
+    margin-right: 5px;
+}
+
+#sprite{
+    margin-left: 28%;
+    border-bottom: 1px solid #3A3B3A;
+}
+
+.sprite{
+    background-color: #E5E5E5;
+    width: 70%;
+    height: 90%;
+}
+
+.sprite .title{
+    padding: 5% 0 5% 25%;
+    margin: 3%;
+    background-color: #3A3B3A;
+}
+
+.sprite .title h3{
+    color: white;
+    margin-left: 3%;
+}
+
+.sprite .title h4{
+    color: white;
+    margin-left: 20%;
+}
+
+.content{
+    display: flex;
+    padding: 7%;
+}
+
+.content h2{
+    border-bottom: 1px solid black;
+}
+
+.descricao{
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.descricao h3{
+    margin-top: 3%;
+}
+
+.habilidades{
+    padding: 4% 0 10% 0;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grupo{
+    padding-right: 10%;
+}
+
+.habilidade{
+    width: 100%;
+    margin-right: 15%;
+    display: flex;
+    align-items: center;
+    margin-top: 7%;
+}
+
+
+.habilidade img{
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.arvore{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.arvore h3{
+    margin-bottom: 3%;
+}
+
+#sprite-table{
+    width: 100%;
+}
+
+#sprite-table tbody tr{
+    background-color: white;
+}
+
+#sprite-table tbody td{
+    text-align: center;
+}
+
+#bonus{
+    width: 100%;
+}
+
+#bonus thead th{
+    background-color: white;
+    color: #00259C;
+}
+
+#bonus tbody tr{
+    background-color: white;
+    
+}
+
+#bonus tbody td{
+    text-align: center;
+}

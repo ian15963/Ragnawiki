@@ -1,0 +1,221 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+.header{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.header h1{
+    margin: 0 0 0 30px;
+    color: #00259C;
+}
+
+.header .navbar{
+    margin: 0 30px 0 0;
+}
+
+.header .navbar a{
+    font-size: 20px;
+    text-decoration: none;
+    color: #00259C;
+    margin-right: 5px;
+}
+
+.content{
+    background-image: url(../assets/imgs/TelaClasses.png);
+    width: 100%;
+    background-repeat: no-repeat;
+    height: 565px;
+    background-size: 100%;
+}
+
+.classes{
+    height: auto;
+    padding: 30px 10% 30px 10%;
+}
+
+.classes .texto h2{
+    text-align: center;
+    color: #00259C;
+    margin: 10px 0 25px 0;
+    font-size: 32px;
+}
+
+.classes .texto p{
+    font-size: 20px;
+    text-align: justify;
+}
+
+.classe-inicial{
+    margin-top: 3%;
+    background-color: #FFEBCD;
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.548);    
+}
+
+.classe2{
+    background-color: #EBD7C5;
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.548);    
+}
+
+.classe-trans{
+    background-color: #D1DDD0;    
+    width: 100%;
+    text-align: center;    
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.classe3{
+    background-color: #D8BFD8;    
+    width: 100%;
+    text-align: center;    
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+.classe1{
+    background-color: #F0E68C;
+    width: 100%;
+    text-align: center;    
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.aprendiz{
+    padding-left: 44.5%;
+    padding-bottom: 2%;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.aprendiz p{
+    margin-left: 4%;
+}
+
+.classe p {
+    text-align: center;
+    font-weight: 600;
+}
+
+.classes1{
+    margin: 0;
+    display: flex;
+}
+
+.classes1 .classe{
+    padding: 0 2.77%;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.classes2{
+    margin: 0;
+    display: flex;
+    overflow: auto;
+}
+
+.classes2 .classe{
+    padding: 0 1.6%;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.iniciais{
+    display: flex;
+    justify-content: space-between;
+}
+
+.iniciais .doram{
+    border: 1px solid rgba(0, 0, 0, 0.548);
+    padding: 0 2.65%;
+    padding-top: 23%;
+}
+
+.iniciais .doram p{
+    margin-left: 17%;
+}
+
+.iniciais .aprendizes{
+    width: 100%;
+}
+
+.iniciais .aprendizes .aprendiz-expandida{
+    padding-left: 44%;
+    padding-bottom: 2%;
+    padding-right: 28%;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.iniciais .aprendizes .aprendiz-expandida p{
+    margin-left: 13%;
+}
+
+.taekwon{
+    border: 1px solid rgba(0, 0, 0, 0.548);
+    padding-left: 25%;
+}
+
+.taekwon p{
+    margin-left: 16%;
+}
+
+.taekwon2 .evolucao-taekwon{
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.taekwon2 .evolucao-taekwon2{
+    border: 1px solid rgba(0, 0, 0, 0.548);
+    width: 46.5%;
+}
+
+
+.taekwon2 .evolucao-taekwon img{
+    width: 95%;
+}
+
+.ninja{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.justiceiro{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.super{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.evolucao-ninja{
+    width: 35%;
+    margin-left: -2%;
+}
+
+.ninja2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5.9%;
+    border: 1px solid rgba(0, 0, 0, 0.548);    
+}

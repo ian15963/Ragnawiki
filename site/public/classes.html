@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <link rel="stylesheet" href="css/classes.css">
+</head>
+<body onload="getClasses()">
+
+    <div class="header">
+        <h1>Ragnawiki</h1>
+        <div class="navbar">
+            <a href="/index.html">Inicio</a>
+            <a href="/episodios.html">Episódios</a>
+            <a href="/classes.html">Classes</a>
+        </div>
+    </div>
+    <div class="content"></div>
+
+    <div class="classes">
+
+        <div class="texto">
+            <h2>Classes</h2>
+            <p>As profissões - ou classes - funcionam como uma linha de evolução que você escolhe para fortalecer seu personagem com habilidades exclusivas.
+                Com exceção dos Dorams, todos em Ragnarök Online começam como Aprendizes e poderão evoluir sua profissão sem poder alterá-la (Arqueiro não pode trocar para Espadachim, por exemplo).
+                Após darem seus Primeiros Passos, poderão decidir seu caminho a partir do nível de classe 10.</p>
+        </div>
+
+        <div class="classe-inicial">
+            <h3>Classe Inicial</h3>
+        </div>
+        <div class="aprendiz" id="aprendizees">
+        </div>
+        <div class="classe1">
+            <h3>Classe 1</h3>
+        </div>
+        <div class="classes1" id="classes1"></div>
+        <div class="classe2">
+            <h3>Classe 2</h3>
+        </div>
+        <div class="classes2" id="classes2"></div>
+        <div class="classe-trans">
+            <h3>Classe Transcendental</h3>
+        </div>
+        <div class="classes2" id="classesTrans"></div>
+        <div class="classe3">
+            <h3>Classe 3</h3>
+        </div>
+        <div class="classes2" id="classes3"></div>
+        <div class="texto">
+            <h2 style="color: black; font-size: 28px; margin-top: 30px;">Expandidas</h2>
+        </div>
+        <div class="classe-inicial">
+            <h3>Classe Inicial</h3>
+        </div>
+        <div class="iniciais">
+            <div class="aprendizes">
+                <div class="aprendiz-expandida">
+                    <img src="assets/imgs/classes/Aprendizessprite.png" alt="">
+                    <p>Aprendiz</p>
+                </div>
+                <div class="classe1">
+                    <h3>Classe 1 Expandida</h3>
+                </div>
+                <div class="classe1-expandida" style="display: flex;">
+                    <div class="taekwons">
+                        <div class="taekwon">
+                            <img src="assets/imgs/classes/Taekwonssprite.png" alt="">
+                            <p>Taekwons</p>
+                        </div>
+                        <div class="classe2">
+                            <h3>Classe 2 Expandida</h3>
+                        </div>
+                        <div class="taekwon2" style="display: flex;">
+                            <div class="evolucao-taekwon">
+                                <img src="assets/imgs/classes/Mestres_Taekwonssprite.png" alt="">
+                                <p style="text-align: center;">Mestres Taekwons</p>
+                            </div>
+                            <div class="evolucao-taekwon">
+                                <img src="assets/imgs/classes/Espiritualistassprite.png" alt="">
+                                <p style="margin-left: 10%;">Espiritualistas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ninja">
+                        <img src="assets/imgs/classes/Ninjassprite.png" alt="">
+                        <p>Ninjas</p>
+                    </div>
+                    <div class="justiceiro">
+                        <img src="assets/imgs/classes/Justiceirossprite.png" alt="">
+                        <p>Justiceiros</p>
+                    </div>
+                    <div class="super">
+                        <img src="assets/imgs/classes/Superaprendizessprite.png" alt="">
+                        <p>Superaprendizes</p>
+                    </div>
+                </div>
+                <div class="classe3">
+                    <h3>Classe 3 Expandida</h3>
+                </div>
+                <div style="display: flex;">
+                    <div class="taekwon2" style="display: flex;">
+                        <div class="evolucao-taekwon2">
+                            <img src="assets/imgs/classes/Mestres_Estelaressprite.png" alt="">
+                            <p style="text-align: center;">Mestres Estelares</p>
+                        </div>
+                        <div class="evolucao-taekwon2">
+                            <img src="assets/imgs/classes/Ceifadores_de_Almassprite.png" alt="">
+                            <p style="margin-left: 5%;">Ceifadores de Almas</p>
+                        </div>
+                    </div>
+                    <div class="evolucao-ninja" style="display: flex;">
+                        <div class="ninja2">
+                            <img src="assets/imgs/classes/Kagerousprite.png" alt="">
+                            <p>Kagerou</p>
+                        </div>
+                        <div class="ninja2">
+                            <img src="assets/imgs/classes/Oborosprite.png" alt="">
+                            <p>Oboro</p>
+                        </div>
+                    </div>
+                    <div class="justiceiro">
+                        <img src="assets/imgs/classes/Insurgentessprite.png" alt="">
+                        <p>Insurgentes</p>
+                    </div>
+                    <div class="super">
+                        <img src="assets/imgs/classes/Superaprendizessprite (1).png" alt="">
+                        <p>Superaprendizes EX</p>
+                    </div>
+                </div>
+            </div>
+            <div class="doram">
+                <img src="assets/imgs/classes/Invocadoressprite.png" alt="">
+                <p>Invocadores</p>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+<script>
+
+
+    var classes;
+    const getClasses = async () =>{
+
+        await fetch("/classe/all-classes", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then((data) => {
+            data.json().then(json => {
+                classes = json.nome
+                console.log(json.nome[0].nome)
+            })
+            console.log(data)
+        })
+        console.log(classes)
+
+        
+    }
+
+    setTimeout(()=>{
+
+        for(var i = 0; i < classes.length; i++){
+
+            if(classes[i].tipo == "Classe 1"){
+                classes1.innerHTML += `
+                <div class="classe">
+                    <img src="assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
+                    <p>${classes[i].nome}</p>
+                </div>
+            `
+            }
+            if(classes[i].tipo == "Classe 2"){
+                classes2.innerHTML += `
+                <div class="classe">
+                    <img src="assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
+                    <p>${classes[i].nome.replaceAll("_", " ")}</p>
+                </div>
+                `
+            }
+            if(classes[i].tipo == "Classe 3"){
+                classes3.innerHTML += `
+                <div class="classe">
+                    <img src="assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
+                    <p>${classes[i].nome.replaceAll("_", " ")}</p>
+                </div>
+                `
+            }
+            if(classes[i].tipo == "Classe Transcendental"){
+                classesTrans.innerHTML += `
+                <div class="classe">
+                    <img src="assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
+                    <p>${classes[i].nome.replaceAll("_", " ")}</p>
+                </div>
+                `
+            }
+
+        }
+
+        aprendizees.innerHTML = `<img src="assets/imgs/classes/${classes[0].nome}sprite.png" alt="">
+        <p style="font-weight: 600;">Aprendizes</p>`
+        console.log(classes[0].nome)
+    }, 500)
+    const click_aprendiz = () =>{
+    }
+    
+</script>
+</html>

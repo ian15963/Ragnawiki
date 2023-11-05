@@ -6,11 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Página Inicial</title>
+    <title>Ragnawiki</title>
 
-    <script src="./js/sessao.js"></script>
-
-    <link rel="icon" href="./assets/icon/favicon2.ico">
     <link rel="stylesheet" href="./css/tela-inicial.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <!-- <link
@@ -23,27 +20,61 @@
     <div class="header">
         <h1>Ragnawiki</h1>
         <div class="navbar">
-            <a href="../public/index.html">Inicio</a>
-            <a href="#">Episódios</a>
-            <a href="#">Classes</a>
+            <a href="/index.html">Inicio</a>
+            <a href="/episodios.html">Episódios</a>
+            <a href="/classes.html">Classes</a>
         </div>
     </div>
     <div class="content"></div>
     
-    <div class="carrossel">
-        <div class="fotos">
-            <div class="image">
-                <img src="assets/imgs/Carrossel1.png" alt="">
-            </div>
-            <div class="image">
-                <img src="assets/imgs/Classe.png" alt="">
-            </div>
-            <div class="image">
-                <img src="assets/imgs/Carrossel2.png" alt="">
-            </div>
+    <div class="slider">
+
+        <div class="slide">
+            <p>Episódios</p>
+          <img src="assets/imgs/encontro-com-o-desconhecido.jpg" alt=""/>
         </div>
+  
+        <div class="slide">
+          <p>Classes</p>
+          <img src="assets/imgs/Classe.png" alt="" />
+        </div>
+  
+        <div class="slide">
+            <p>Equipamentos</p>
+          <img src="assets/imgs/Carrossel2.png" alt="" />
+        </div>
+
+        <button class="btn btn-next">></button>
+        <button class="btn btn-prev"><</button>
     </div>
 
+    <div class="historia">
+        <h2>História do Jogo</h2>
+        <p>A palavra Ragnarök é profetizada como o "destino final dos deuses", esse evento estaria se aproximando cada vez mais, onde a "era dos humanos" se iniciaria.
+
+            Contudo, os Deuses não estão contentes com seu destino, e enviaram valquírias para procurar aquele que trará o Ragnarök, evitando que a profecia seja realizada.
+            
+            Sabendo que o Ragnarök começaria com a morte do Deus Balder, Fenris Fenrir vagou por Midgard em busca do Deus.
+            
+            Assim que descobre que Balder reencarnou na pele de um jovem com amnésia chamado Chaos, a busca começa a ficar perigosa.
+            
+            Com a descoberta do poder do Coração de Ymir, pelo Sábio Varmunt, conflitos entre os continentes começaram a surgir.
+            
+            O coração foi dividido em vários fragmentos e Arunafeltz está em busca de todos os pedaços.
+            
+            O Sacro Império pretende iniciar uma Guerra Santa contra Rune-Midgard. Esse fanatismo religioso seria o estopim para invocar Surtr, o Satã Morroc, que havia sido selado por Thanatos.
+            
+            A ressurreição de Surtr criou uma enorme Fenda Dimensional, ligando Midgard a Ash Vacuum.
+            
+            Agora, o Ragnarök parece estar prestes a acontecer, mas diferente da profecia, o destino final dos Deuses dependerá de você!</p>
+        <h2>Criação do Jogo</h2>
+        <p>Ragnarok Online é um MMORPG desenvolvido pela empresa sul-coreana Gravity Corp. Os cenários do jogo foram baseados, inicialmente, no manhwa Ragnarok de Lee Myung-Jin, lançado no ano de 2002, fez muito sucesso no Brasil após o lançamento no país no ano de 2004. 
+ 
+
+            Ragnarok Online foi o primeiro jogo online coreano a ser exportado com sucesso a outros países. No Brasil, foi o primeiro MMORPG traduzido oficialmente para a língua portuguesa, rodado em servidores nacionais, com planos de pagamento em Real, tendo se tornado um game com servidores gratuitos e pagos, com um sistema de micro transações e um sistema de servidor VIP. Estima-se que tenha possuído mais de 25 milhões de assinantes no mundo em 2011. </p>
+    </div>
+        
 </body>
+<script src="js/carrossel.js"></script>
 
 </html>
