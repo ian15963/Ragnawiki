@@ -31,7 +31,15 @@ INSERT INTO habilidade(nome, fkClasse) VALUES ('Rajada_de_Flechas', 8), ('Chuva_
 INSERT INTO habilidade(nome, fkCLasse) VALUES ('Impacto_de_Tyr', 9), ('Lança_Bumerangue', 9), ('Estocada',9), ('Contra-Ataque',9), ('Brandir_Lança',9), ('Avanço_Ofensivo',9),
 ('Montaria',9), ('Perfurar',9), ('Perícia_com_Lança',9), ('Perícia_em_Montaria', 9), ('Rapidez_com_Duas_Mãos', 9), ('Rapidez_com_Uma_Mão', 9);
 
-SELECT * FROM HABILIDADE;
+-- Skills de Templário
+INSERT INTO habilidade(nome, fkClasse) VALUES ('Crux_Divinum', 10), ('Crux_Magnum', 10), ('Bloqueio', 10), ('Redenção', 10), ('Aura_Sagrada', 10),
+('Rapidez_com_Lança', 10), ('Punição_Divina', 10), ('Escudo_Refletor', 10), ('Escudo_Bumerangue', 10), ('Fé', 10), ('Montaria', 10), ('Perícia_em_Montaria',10),
+('Perícia_com_Lança', 10), ('Flagelo_do_Mal', 10), ('Proteção_Divina', 10), ('Curar', 10), ('Medicar', 10), ('Divina_Providência', 10), ('Submissão', 10);
+
+-- Skills de Bruxo
+INSERT INTO habilidade(nome, fkClasse) VALUES ('Coluna_de_Pedra', 11), ('Pântano_dos_Mortos', 11), ('Fúria_da_Terra', 11), ('Congelar', 11), ('Barreira_de_Gelo',11),
+('Barreira_de_Gelo', 11), ('Nevasca', 11), ("Esfera_d'Água", 11), ('Chuva_de_Meteoros', 11), ('Supernova', 11), ('Coluna_de_Fogo', 11), ('Trovão_de_Júpiter', 11),
+('Ira_de_Thor', 11), ('Sentido_Sobrenatural', 11), ('Explosão_Protetora', 11);
 
 -- Skills de Ferreiro
 INSERT INTO habilidade(nome, fkClasse) VALUES ('Martelo_de_Thor', 15), ('Adrenalina_Pura', 15), ('Amplificar_Poder', 15), ('Força_Violenta', 15), ('Manejo_Perfeito', 15),
