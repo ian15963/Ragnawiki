@@ -6,6 +6,8 @@ const getAllClass = () =>{
     return database.executar(instrucao);
 }
 
+// para cada (habilidade): createDiv 
+
 
 const getAllSkills = (id) =>{
     

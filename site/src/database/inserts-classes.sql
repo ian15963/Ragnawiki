@@ -241,9 +241,3 @@ Agora, ocupando um espaço visível na influência política de Schwartzwald, o 
 Levam consigo o poder oculto do Anjo da Guarda, fiel protetor e guardião.
 Apesar de tantas vantagens, Superaprendizes têm as mesmas fragilidades dos Aprendizes.
 Ao atingirem o nível de base 99, podem expandir a classe para ganhar novas habilidades e seguir evoluindo', 51);
-
-
-INSERT INTO habilidade(nome, fkClasse) VALUES ('Martelo_de_Thor', 28), ('Adrenalina_Pura', 28), ('Amplificar_Poder', 28), ('Força_Violenta', 28), ('Manejo_Perfeito', 28),
-('Consertar_Armas', 28), ('Perícia_em_Armamento', 28), ('Punho_Firme', 28), ('Resistência_ao_Fogo', 28), ('Forjar_Espada_de_Duas_Mãos', 28), ('Produzir_Pedra_Fundamental', 28),
-('Trabalhar_Ferro', 28),('Trabalhar_Aço', 28), ('Forjar_Machado', 28), ('Forjar_Adaga', 28), ('Forjar_Soqueira', 28), ('Forjar_Maça', 28), ('Forjar_Lança', 28), 
-('Encontrar_Minério', 28), ('Perícia_com_Oridecon', 28), ('Venda_Duvidosa', 28), ('Ganância', 28), ('Adrenalina_Concentrada', 28);
