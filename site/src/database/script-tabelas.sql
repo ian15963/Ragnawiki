@@ -45,6 +45,3 @@ CREATE TABLE classe_habilidade(
     CONSTRAINT fkClasseHabilidade FOREIGN KEY (fkClasse) REFERENCES classe(idClasse),
     CONSTRAINT fkHabilidadeClasse FOREIGN KEY (fkHabilidade) REFERENCES habilidade(idHabilidade)
 );
-
-SELECT h.nome as 'Nome da Skill', c.nome as 'Nome da Classe', c.descricao FROM habilidade as h 
-    JOIN classe as c ON h.fkClasse = c.idClasse;
