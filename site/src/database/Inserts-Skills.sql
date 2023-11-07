@@ -48,7 +48,29 @@ INSERT INTO habilidade(nome) VALUES ('Desejo_Arcano'), ('Abracadabra'), ('Furac�
 ('Mudança_Elemental');
 
 -- Skills de Mercenário
-INSERT INTO habilidade(nome) VALUES ('Perícia_com_Katar'), ('Perícia_com_Mão_Esquerda'), ('Perícia_com_Mão_Direita'), ('Lâminas_Destruidoras'), ('Tocaia'), ('Furtividade'), ('Envenenar_Arma');
+INSERT INTO habilidade(nome) VALUES ('Perícia_com_Katar'), ('Perícia_com_Mão_Esquerda'), ('Perícia_com_Mão_Direita'), ('Lâminas_Destruidoras'), ('Tocaia'), ('Furtividade'), ('Envenenar_Arma'),
+('Refletir_Veneno'), ('Névoa_Toxica'), ('Explosão Tóxica'), ('Faca_Envenenada'), ('Lâminas Aceleradas');
+
+-- Skills de Arruaceiro
+INSERT INTO habilidade(nome) VALUES ('Apunhalar'), ('Ataque_Surpresa'), ('Rapto'), ('Afanar'), ('Plágio'), ('Remover_Armadura'), ('Remover_Capacete'), ('Remover_Escudo'),
+('Remover_Arma'), ('Remover_Armadilha'), ('Rajada_de_Flechas'), ('Olhos_de_Águia'), ('Perícia_com_Espada'), ('Faxina'), ('Pichar'), ('Graffitti'), ('Túnel_de_Fuga'),
+('Mãos_Leves'), ('Extorquir'), ('Malandragem'), ('Confinamento');
+
+-- Skills de Alquimistas
+INSERT INTO habilidade(nome) VALUES ('Preparar_Poção'),('Fogo_Grego'), ('Terror_Ácido'), ('Criar_Monstro_Planta'), ('Criar_Esfera_Marinha'), ('Vaporizar'),
+('Criar_Homunculus'), ('Ressucitar_Homunculus'), ('Pesquisa_de_Poções'), ('Arremessar_Poção'), ('Revestir_Capacete'), ('Revestir_Arma'), ('Revestir_Armadura'),
+('Revestir_Escudo'), ('Perícia_com_Machado_e_Espada'), ('Bioética'), ('Criação_Espiritual_de_Porções_I'), ('Criação_Espiritual_de_Porções_I_I'), ('Criação_Espiritual_de_Porções_I_I_I'),
+('Arremessar_Poção_da_Fúria_Selvagem');
+
+-- Skills de Sacerdote
+INSERT INTO habilidade(nome) VALUES ('Aumentar_Recuperação_de_SP'), ('Perícia_com_Maça'), ('Kyrie_Eleison'), ('Glória'), ('Magnificat'), ('Impositio_Manus'), ('Suffragium'),
+('Aspersio'), ('Benedictio_Sanctissimi_Sacramenti'),('Magnus_Exorcismus'), ('Lex_Divina'), ('Esconjurar'), ('Lex_Aeterna'), ('Graça_Divina'), ('Retardar_Veneno'), ('Ressucitar'),
+('Escudo_Mágico'), ('Santuário'), ('Martírio');
+
+-- Skills de Monge
+INSERT INTO habilidade(nome) VALUES ('Punhos_de_Ferro'), ('Cair_de_Pétalas'), ('Meditação'), ('Combo_Triplo'), ('Combo_Quádruplo'),('O_Último_Dragão'), ('Fúria_Interior'),
+('Punho_Supremo_de_Asura'), ('Impacto_Psíquico'), ('Dilema'), ('Passo_Etéreo'), ('Absorver_Esferas_Espirituais'), ('Invocar_Esfera_Espiritual'), ('Disparo_de_Esferas_Espirituais'),
+('Corpo_Fechado'), ('Concessão_Espiritual'), ('Punhos_Intensos');
 
 -- Skills de Ferreiro
 INSERT INTO habilidade(nome) VALUES ('Martelo_de_Thor'), ('Adrenalina_Pura'), ('Amplificar_Poder'), ('Força_Violenta'), ('Manejo_Perfeito'),
