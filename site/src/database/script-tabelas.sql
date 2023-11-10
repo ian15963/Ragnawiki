@@ -29,7 +29,9 @@ CREATE TABLE classe(
     nome varchar(45),
     tipo varchar(30),
     descricao varchar(1200),
+    classeAnterior int,
     fkBonus int,
+    CONSTRAINT fkClasseAnterior FOREIGN KEY (classeAnterior) REFERENCES classe(idClasse),
     CONSTRAINT fkBonus FOREIGN KEY (fkBonus) REFERENCES bonus(idBonus)
 );
 
