@@ -4,105 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monte sua Build</title>
+    <link rel="stylesheet" href="../css/build.css">
 </head>
-<body>
-    
-    <div style="background-color: black; color: white;">
-        <input type="number" id="nivel" oninput="analisarNivel()"> 
-        For: <span id="resultado">0</span> <button>+</button><button>-</button>
-        <div id="pontos"></div>
+<body onload="getClasses()">
+
+    <div class="header">
+        <h1>Ragnawiki</h1>
+        <div class="navbar">
+            <a href="/index.html">Inicio</a>
+            <a href="/episodios.html">Episódios</a>
+            <a href="/classes.html">Classes</a>
+        </div>
+    </div>
+    <div class="classe">
+        <div class="seletor">
+            <select id="classes" onchange="mostrarClasse()">
+            </select>
+        </div>
+        <div class="classe_img">
+            <img id="imagem_classe">
+        </div>
+    </div>
+    <div class="build">
+        <div class="build-atributos">
+            <div class="atributo">
+                For: <input type="number" id="resultado_forca" oninput="forcaPersonagem(this.value)">
+            </div>
+            <div class="atributo">
+                Agi: <input type="number" id="resultado_agilidade" oninput="agilidadePersonagem(this.value)">
+            </div>
+            <div class="atributo">
+                Vit: <input id="resultado_vitalidade" oninput="vitalidadePersonagem(this.value)" type="number">
+            </div>
+            <div class="atributo">
+                Int: <input type="number" id="resultado_inteligencia" oninput="inteligenciaPersonagem(this.value)"> 
+            </div>
+            <div class="atributo">
+                Des: <input type="number" id="resultado_destreza" oninput="destrezaPersonagem(this.value)"> 
+            </div>
+            <div class="atributo">
+                Sor: <input id="resultado_sorte"> 
+                <div class="botao">
+                    <button onclick="adicionarSorte()">+</button>
+                    <button onclick="reduzirSorte()">-</button>
+                </div>
+            </div>
+        </div>
+        <div class="build-status">
+            <div class="nivel">
+               Nível do Personagem:<input type="number" id="nivel" oninput="analisarNivel()"> 
+            </div>
+            <div class="status">
+                <div class="status1">
+                    <div>
+                        Ataque: <span id="ataque">1</span> + X
+                    </div>
+                    <div>
+                        Ataque Mágico: <span id="ataquem">1</span> + X
+                    </div>
+                    <div>
+                        Precisão: <span id="precisao">177</span> + X
+                    </div>
+                    <div>
+                        Crítico: <span id="critico">1</span> + X
+                    </div>
+                </div>
+                <div class="status2">
+                    <div>
+                        Defesa: <span id="defesa">1</span> + X
+                    </div>
+                    <div>
+                        Defesa Mágica: <span id="defesam">1</span> + X
+                    </div>
+                    <div>
+                        Esquiva: <span id="esquiva">102</span> + X
+                    </div>
+                    <div>
+                        Pontos: <span id="pontos"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
-<script>
-
-    var forca = Number(resultado.innerHTML);
-    
-    function analisarNivel(){
-
-        var pontosDeAtributos = 100;
-        var nivelPersonagem = Number(nivel.value)
-        
-        if(nivelPersonagem < 0){
-            nivel.value = 0
-        }else if(nivelPersonagem > 175){
-            nivel.value = 175
-        }
-
-        for(var i = 1; i <= nivelPersonagem; i++){
-
-            if(i > 1 && i <=5){
-                pontosDeAtributos += 3
-            }else if(i > 5 && i <= 10){
-                pontosDeAtributos += 4
-            }else if(i > 10 && i <= 15){
-                pontosDeAtributos += 5
-            }else if(i > 15 && i <= 20){
-                pontosDeAtributos +=6
-            }else if(i > 20 && i <= 25){
-                pontosDeAtributos += 7
-            }else if(i > 25 && i <= 30){
-                pontosDeAtributos += 8
-            }else if(i > 30 && i <= 35){
-                pontosDeAtributos += 9
-            }else if(i > 35 && i <= 40){
-                pontosDeAtributos += 10;
-            }else if(i > 40 && i <= 45){
-                pontosDeAtributos += 11
-            }else if(i >=45 && i <= 50){
-                pontosDeAtributos += 12
-            }else if(i > 50 && i <= 55){
-                pontosDeAtributos += 13
-            }else if(i > 55 && i <= 60){
-                pontosDeAtributos += 14
-            }else if(i > 60 && i <= 65){
-                pontosDeAtributos += 15
-            }else if(i > 65 && i <= 70){
-                pontosDeAtributos += 16
-            }else if(i > 70 && i <=75){
-                pontosDeAtributos += 17
-            }else if(i > 75 && i <= 80){
-                pontosDeAtributos += 18
-            }else if(i > 80 && i <= 85){
-                pontosDeAtributos += 19
-            }else if(i > 85 && i <= 90){
-                pontosDeAtributos += 20
-            }else if(i > 90 && i <= 95){
-                pontosDeAtributos += 21
-            }else if(i > 95 && i <= 100){
-                pontosDeAtributos += 22
-            }else if(i > 100 && i <= 110){
-                pontosDeAtributos += 23
-            }else if(i > 110 && i <= 120){
-                pontosDeAtributos += 24
-            }else if(i > 120 && i <= 130){
-                pontosDeAtributos += 25
-            }else if(i > 130 && i <= 140){
-                pontosDeAtributos += 26
-            }else if(i > 140 && i <= 151){
-                pontosDeAtributos += 27
-            }else if(i > 151 && i <= 158){
-                pontosDeAtributos += 28
-            }else if(i > 158 && i <=164){
-                pontosDeAtributos += 29
-            }else if(i > 164 && i <=171){
-                pontosDeAtributos += 30
-            }else if(i > 171 && i <= 175){
-                pontosDeAtributos += 31
-            }
-
-        }
-
-        pontosDeAtributos += atributos
-        pontos.innerHTML = pontosDeAtributos
-
-    }
-
-    function adicionar(){
-
-
-    }
-
-
-</script>
+<script src="../js/build.js"></script>
 </html>

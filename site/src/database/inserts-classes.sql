@@ -201,7 +201,6 @@ Levam consigo o poder oculto do Anjo da Guarda, fiel protetor e guardião.
 Apesar de tantas vantagens, Superaprendizes têm as mesmas fragilidades dos Aprendizes.
 Ao atingirem o nível de base 99, podem expandir a classe para ganhar novas habilidades e seguir evoluindo.', 1), 
 ('Mestres_Taekwons', 'Classe 2 Expandida', 'Conseguem alinhar os poderes cósmicos para guiá-los para o caminho da força.
-
 Devido aos anos de estudo e um espírito aprumado com o mundo, eles são capazes de unir-se com os corpos celestiais para se tornarem mais efetivos em combate.
 São capazes de enxergar muito além do seu campo de visão quando estão sentados.
 Suas habilidades funcionam em dias específicos, de acordo com as posições solares, lunares e estelares.

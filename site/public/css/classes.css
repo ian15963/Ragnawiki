@@ -5,6 +5,9 @@
     scroll-behavior: smooth;
 }
 
+body{
+    background-color: #171A29;
+}
 
 .header{
     background-color: white;
@@ -40,7 +43,10 @@
 
 .classes{
     height: auto;
-    padding: 30px 10% 30px 10%;
+    padding: 35px 5% 35px 5%;
+    background-color: white;
+    margin: 60px;
+    border-radius: 15px;
 }
 
 .classes .texto h2{
@@ -88,6 +94,11 @@
     width: 100%;
     text-align: center;    
     border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
 
 .aprendiz{
@@ -143,6 +154,7 @@
 
 .iniciais .aprendizes{
     width: 100%;
+    font-weight: bold;
 }
 
 .iniciais .aprendizes .aprendiz-expandida{
@@ -188,6 +200,10 @@
     border: 1px solid rgba(0, 0, 0, 0.548);
 }
 
+.ninja p{
+    margin-left: 32%;
+}
+
 .justiceiro{
     width: 20%;
     display: flex;
@@ -195,6 +211,10 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid rgba(0, 0, 0, 0.548);
+}
+
+.justiceiro p {
+    margin-left: 22%;
 }
 
 .super{
@@ -209,6 +229,10 @@
 .evolucao-ninja{
     width: 35%;
     margin-left: -2%;
+}
+
+.evolucao-ninja p{
+    margin-left: 30%;
 }
 
 .ninja2{
