@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monte sua Build</title>
     <link rel="stylesheet" href="../css/build.css">
 </head>
+
 <body onload="getClasses()">
 
     <div class="header">
@@ -37,22 +39,18 @@
                 Vit: <input id="resultado_vitalidade" oninput="vitalidadePersonagem(this.value)" type="number">
             </div>
             <div class="atributo">
-                Int: <input type="number" id="resultado_inteligencia" oninput="inteligenciaPersonagem(this.value)"> 
+                Int: <input type="number" id="resultado_inteligencia" oninput="inteligenciaPersonagem(this.value)">
             </div>
             <div class="atributo">
-                Des: <input type="number" id="resultado_destreza" oninput="destrezaPersonagem(this.value)"> 
+                Des: <input type="number" id="resultado_destreza" oninput="destrezaPersonagem(this.value)">
             </div>
             <div class="atributo">
-                Sor: <input id="resultado_sorte"> 
-                <div class="botao">
-                    <button onclick="adicionarSorte()">+</button>
-                    <button onclick="reduzirSorte()">-</button>
-                </div>
+                Sor: <input type="number" id="resultado_sorte" oninput="sortePersonagem(this.value)">
             </div>
         </div>
         <div class="build-status">
             <div class="nivel">
-               Nível do Personagem:<input type="number" id="nivel" oninput="analisarNivel()"> 
+                Nível do Personagem:<input type="number" id="nivel" oninput="analisarNivel()">
             </div>
             <div class="status">
                 <div class="status1">
@@ -89,4 +87,5 @@
 
 </body>
 <script src="../js/build.js"></script>
+
 </html>

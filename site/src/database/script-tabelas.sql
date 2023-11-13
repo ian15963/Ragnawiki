@@ -47,3 +47,23 @@ CREATE TABLE classe_habilidade(
     CONSTRAINT fkClasseHabilidade FOREIGN KEY (fkClasse) REFERENCES classe(idClasse),
     CONSTRAINT fkHabilidadeClasse FOREIGN KEY (fkHabilidade) REFERENCES habilidade(idHabilidade)
 );
+
+CREATE TABLE atributos_build(
+	idBonus int primary key auto_increment,
+    Forca int,
+    Agilidade int,
+    Vitalidade int,
+    Destreza int,
+    Sorte int
+);
+
+CREATE TABLE status_build(
+	idStatus int primary key auto_increment,
+    ataque int,
+    ataqueMagico int,
+    defesa int,
+	defesaMagica int,
+    precisao int,
+    esquiva int,
+    critico int
+);
