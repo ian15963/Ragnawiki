@@ -32,6 +32,40 @@ const mostrarClasse = () => {
 }
 
 
+const saveBuild = () =>{
+
+    fetch("/build/save", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            forcaPersonagem: resultado_forca.value,
+            agilidadePersonagem: resultado_agilidade.value,
+            vitalidadePersonagem: resultado_vitalidade.value,
+            inteligenciaPersonagem: resultado_inteligencia.value,
+            destrezaPersonagem: resultado_destreza.value,
+            sortePersonagem: resultado_sorte.value,
+            ataquePersonagem: ataquePersonagem,
+            ataqueMagicoPersonagem: ataqueMagicoPersonagem,
+            defesaPersonagem: defesaPersonagem,
+            defesaMagicaPersonagem: defesaMagicaPersonagem,
+            precisaoPersonagem: precisaoPersonagem,
+            esquivaPersonagem: esquivaPersonagem,
+            criticoPersonagem: criticoPersonagem
+        })
+        }).then(data => {
+            if(data.ok){
+                console.log(data)
+                console.log("Build criada com sucesso")
+            }else{
+                console.log(data)
+                console.log("Erro ao criar Build")
+            }
+    })
+
+}
+
 // Atributos e Status
 
 pontos.innerHTML = 100;
@@ -695,38 +729,39 @@ function destrezaPersonagem(destreza) {
     ataquem.innerHTML = ataqueMagicoPersonagem
 }
 
-function sortePersonagem(sorte) {
+function sortePersonagem(luk) {
 
-    var pontosGastosEmSorte = 0
-    var ataquePorSor = 0
-    var ataqueMagicoPorSor = 0
-    var esquivaPorSor = 0
-    var criticoPorSor = 0
-    var precisaoPorSor = 0
+     pontosGastosEmSorte = 0
+     ataquePorSor = 0
+     ataqueMagicoPorSor = 0
+     esquivaPorSor = 0
+     criticoPorSor = 0
+     precisaoPorSor = 0
 
-    if (sorte > 130) {
-        sorte = 130
+    if (luk > 130) {
+        luk = 130
     }
-    if (sorte < 0) {
-        sorte = 1
+    if (luk < 0) {
+        luk = 1
     }
 
-    for (var i = 1; i < sorte; i++) {
+    for (var i = 1; i < luk; i++) {
+
         if ((i + 1) % 3 == 0) {
             ataqueMagicoPorSor++
             ataquePorSor++
             precisaoPorSor++
         }
-
+    
         if ((i + 1) % 5 == 0) {
             esquivaPorSor++
         }
-
+    
         if ((i + 1) % 10 == 0 || i == 4 || i == 7 || i == 14 || i == 17 || i == 24 || i == 27 || i == 34 || i == 37 || i == 44 || i == 47 || i == 54 || i == 57 || i == 64 || i == 67
             || i == 74 || i == 77 || i == 84 || i == 87 || i == 94 || i == 97 || i == 104 || i == 107 || i == 114 || i == 117 || i == 124 || i == 127) {
             criticoPorSor++
         }
-
+    
         if (i >= 1 && i <= 10) {
             pontosDeAtributos -= 2
             pontosGastosEmSorte += 2
@@ -779,6 +814,11 @@ function sortePersonagem(sorte) {
     }
 
     analisarNivel()
+    totalAtaque();
+    totalAtaqueMagico();
+    totalEsquiva();
+    totalPrecisao();
+    totalCritico();
 
     if (pontosDeAtributos < 0) {
         pontos.style.color = "red"
@@ -788,16 +828,11 @@ function sortePersonagem(sorte) {
         pontos.innerHTML = pontosDeAtributos;
     }
 
-    totalAtaque();
-    totalAtaqueMagico();
-    totalEsquiva();
-    totalPrecisao();
-    totalCritico();
-
-    resultado_sorte.value = sorte
+    resultado_sorte.value = luk
     ataque.innerHTML = ataquePersonagem
     ataquem.innerHTML = ataqueMagicoPersonagem
     esquiva.innerHTML = esquivaPersonagem
     precisao.innerHTML = precisaoPersonagem
     critico.innerHTML = criticoPersonagem
+    console.log(ataqueMagicoPorSor, ataquePorSor, esquivaPorSor, precisaoPorSor, criticoPorSor)
 }

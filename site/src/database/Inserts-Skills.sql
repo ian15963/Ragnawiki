@@ -394,5 +394,8 @@ INSERT INTO classe_habilidade VALUES
 SELECT h.nome, c.nome as 'nomeSkill' FROM classe_habilidade as ch JOIN classe as c ON ch.fkClasse = c.idClasse JOIN habilidade as h ON ch.fkHabilidade = h.idHabilidade WHERE fkClasse=17;
 SELECT COUNT(*) FROM habilidade;
 SELECT nome from Classe;
+SELECT h.nome, c.nome, classeAnterior.nome FROM classe_habilidade as ch JOIN classe as c ON ch.fkClasse = c.idClasse 
+JOIN habilidade as h ON ch.fkHabilidade = h.idHabilidade JOIN classe as classeAnterior ON classeAnterior.idClasse = c.classeAnterior WHERE fkClasse=17;
+
 -- SELECT h.nome as 'nomeSkill', c.nome as 'nomeClasse', c.descricao FROM habilidade as h 
 --    JOIN classe as c ON h.fkClasse = c.idClasse WHERE h.fkClasse = c.idClasse;

@@ -49,10 +49,11 @@ CREATE TABLE classe_habilidade(
 );
 
 CREATE TABLE atributos_build(
-	idBonus int primary key auto_increment,
+	idAtributo int primary key auto_increment,
     Forca int,
     Agilidade int,
     Vitalidade int,
+    Inteligencia int,
     Destreza int,
     Sorte int
 );
@@ -66,4 +67,18 @@ CREATE TABLE status_build(
     precisao int,
     esquiva int,
     critico int
+);
+
+CREATE TABLE build(
+	idBonus int auto_increment,
+    nome varchar(45),
+    fkUsuario int,
+    fkClasse int,
+    fkAtributo int,
+    fkStatus int,
+    primary key(idBonus, fkUsuario, fkClasse, fkAtributo, fkStatus),
+    CONSTRAINT fkUsuarioBuild FOREIGN KEY (fkUsuario) REFERENCES usuario(id),
+    CONSTRAINT fkClasseBuild FOREIGN KEY (fkClasse) REFERENCES classe(idClasse),
+    CONSTRAINT fkAtributoBuild FOREIGN KEY (fkAtributo) REFERENCES atributos_build(idAtributo),
+    CONSTRAINT fkStatusBuild FOREIGN KEY (fkStatus) REFERENCES status_build(idStatus)
 );
