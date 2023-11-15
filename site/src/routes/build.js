@@ -6,5 +6,12 @@ router.post("/save", (req, res) => {
     buildController.saveBuild(req, res)
 })
 
+router.get("/getAll/:idUsuario", (req,res) =>{
+    buildController.getBuilds(req,res)
+})
+
+router.get("/getOne/:idBuild", (req, res) => {
+    buildController.getBuild(req,res);
+})
 
 module.exports = router;

@@ -62,8 +62,6 @@
                 data.json().then(
                     json => {
                         sessionStorage.setItem("autenticado" ,json.autenticado)
-                        sessionStorage.setItem("email", json.resultado.email)
-                        sessionStorage.setItem("nome", json.resultado.nome)
                         sessionStorage.setItem("id", json.resultado.id)
                 });
                 setTimeout(() => {

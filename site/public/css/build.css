@@ -35,13 +35,25 @@ body{
 
 .classe{
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+    justify-content: space-between;
     margin: 7% 10% 0 12%;
     width: 70%;
     height: 300px;
     background-color: white;
+}
+
+.classe .personagem{
+    margin: 3% 20% 0 0;
+}
+
+
+.classe_img img{
+    width: 100%;
+}
+
+.classe .grafico{
+    margin: 0 0 0 15%;
+    padding: 2%;
 }
 
 .seletor{

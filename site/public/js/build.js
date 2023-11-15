@@ -1,4 +1,5 @@
 var allClasses;
+var buildsUsuario = []
 const getClasses = async () => {
 
     await fetch("/classe/all-classes", {
@@ -17,22 +18,83 @@ const getClasses = async () => {
 
 }
 
+const getBuild = () =>{
+
+    var idBuild = sessionStorage.getItem("idBuild");
+
+    fetch(`/build/getOne/${idBuild}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(data =>{
+        if(data.ok){
+            data.json().then(json =>{
+                buildsUsuario = json.build
+            })
+        }
+    })
+
+}
+
 setTimeout(() => {
 
-    for (var i = 0; i < allClasses.length; i++) {
+    allClasses.sort((x, y) => {
+        let a = x.nome.toUpperCase();
+        let b = y.nome.toUpperCase();
 
+        return a == b ? 0 : a > b ? 1 : -1
+    })
+
+    for (var i = 0; i < allClasses.length; i++) {
+        
         classes.innerHTML += `<option value="${allClasses[i].nome}">${allClasses[i].nome.replaceAll("_", " ")}</option>`
 
+        if(allClasses[i].nome){
+            imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
+        }
+
     }
-    console.log(allClasses)
+
+    pontos.innerHTML = buildsUsuario[0] ? buildsUsuario[0].pontos : 0;
+    ataque.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataque : 1;
+    ataquem.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataqueMagico : 1;
+    defesa.innerHTML = buildsUsuario[0] ? buildsUsuario[0].defesa : 1;
+    defesam.innerHTML = buildsUsuario[0] ? buildsUsuario[0].defesaMagica: 1;
+    precisao.innerHTML = buildsUsuario[0] ? buildsUsuario[0].precisao : 177;
+    esquiva.innerHTML = buildsUsuario[0] ? buildsUsuario[0].esquiva : 102;
+    critico.innerHTML = buildsUsuario[0] ? buildsUsuario[0].critico : 1;
+    nivel.value = buildsUsuario[0] ? buildsUsuario[0].nivel : 1;
+    resultado_forca.value = buildsUsuario[0] ? forcaPersonagem(buildsUsuario[0].Forca) : 1;
+    resultado_agilidade.value = buildsUsuario[0] ? agilidadePersonagem(buildsUsuario[0].Agilidade) : 1;
+    resultado_vitalidade.value = buildsUsuario[0] ? vitalidadePersonagem(buildsUsuario[0].Vitalidade) : 1;
+    resultado_inteligencia.value = buildsUsuario[0] ? inteligenciaPersonagem(buildsUsuario[0].Inteligencia) : 1;
+    resultado_destreza.value = buildsUsuario[0] ? destrezaPersonagem(buildsUsuario[0].Destreza) : 1;
+    resultado_sorte.value = buildsUsuario[0] ? sortePersonagem(buildsUsuario[0].Sorte) : 1;
+    imagem_classe.src = buildsUsuario[0] ? `../assets/imgs/classes/${buildsUsuario[0].nomeClasse}sprite.png` : `../assets/imgs/classes/${classes.value}sprite.png`
+    console.log(allClasses, buildsUsuario)
 }, 500)
 
+var classeId = 26;
+//Mostrar classe Selecionada
 const mostrarClasse = () => {
+
     imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
+
+    for(var i = 0; i < allClasses.length; i++){
+        if(allClasses[i].nome == classes.value){
+            classeId = allClasses[i].idClasse;
+            break
+        }
+    }
+
 }
 
 
+//Requisição para salvar a build
 const saveBuild = () =>{
+
+    var idUsuario = sessionStorage.getItem("id");
 
     fetch("/build/save", {
         method: "POST",
@@ -52,7 +114,11 @@ const saveBuild = () =>{
             defesaMagicaPersonagem: defesaMagicaPersonagem,
             precisaoPersonagem: precisaoPersonagem,
             esquivaPersonagem: esquivaPersonagem,
-            criticoPersonagem: criticoPersonagem
+            criticoPersonagem: criticoPersonagem,
+            nivelPersonagem: nivel.value,
+            pontosDeAtributos: pontosDeAtributos,
+            id: idUsuario,
+            idClasse: classeId
         })
         }).then(data => {
             if(data.ok){
@@ -66,9 +132,23 @@ const saveBuild = () =>{
 
 }
 
+//Gráfico de atributos
+var atributoGrafico = document.getElementById("atributo");
+
+    var grafico = new Chart(atributoGrafico, {
+        type: "radar",
+        data: {
+                labels: ['Força', 'Agilidade', 'Vitalidade', 'Inteligencia', 'Destreza', 'Sorte'],
+                datasets: [{
+                    label: 'Atributos do Personagem',
+                    data: [1, 1, 1, 1, 1, 1],
+            
+                }]
+    }
+    })
+
 // Atributos e Status
 
-pontos.innerHTML = 100;
 var ataquePersonagem = 0
 var ataqueMagicoPersonagem = 0
 var precisaoPersonagem = 0
@@ -76,7 +156,7 @@ var criticoPersonagem = 0
 var defesaPersonagem = 0
 var defesaMagicaPersonagem = 0
 var esquivaPersonagem = 0
-var pontosDeAtributos = 100
+var pontosDeAtributos =  0
 var pontosGastosEmForca = 0
 var pontosGastosEmAgilidade = 0
 var pontosGastosEmVitalidade = 0
@@ -100,7 +180,7 @@ var criticoPorSor = 0
 var precisaoPorSor = 0
 
 function totalDefesa() {
-    defesaPersonagem = defesaPorAgilidade + defesaPorVit + 1
+    defesaPersonagem =  defesaPorAgilidade + defesaPorVit + 1
 }
 
 function totalEsquiva() {
@@ -129,7 +209,7 @@ function totalCritico() {
 
 function analisarNivel() {
 
-    var pontosDeAtributos = 100
+    pontosDeAtributos = 100
     var nivelPersonagem = Number(nivel.value)
 
     if (nivelPersonagem < 0) {
@@ -211,8 +291,7 @@ function analisarNivel() {
     pontosDeAtributos -= pontosGastosEmInteligencia
     pontosDeAtributos -= pontosGastosEmDestreza
     pontosDeAtributos -= pontosGastosEmSorte
-    this.pontosDeAtributos = pontosDeAtributos
-    if (this.pontosDeAtributos < 0) {
+    if (pontosDeAtributos < 0) {
         pontos.style.color = "red"
         pontos.innerHTML = pontosDeAtributos;
     } else {
@@ -315,9 +394,11 @@ function forcaPersonagem(forca) {
     }
 
     totalAtaque();
-
-    resultado_forca.value = forca
+    grafico.data.datasets[0].data[0] = forca
+    grafico.update();
     ataque.innerHTML = ataquePersonagem
+    return forca
+    resultado_forca.value = forca
 }
 
 function agilidadePersonagem(agilidade) {
@@ -418,9 +499,14 @@ function agilidadePersonagem(agilidade) {
 
     totalDefesa();
     totalEsquiva();
-    resultado_agilidade.value = agilidade
+
+    grafico.data.datasets[0].data[1] = agilidade
+    grafico.update();
+
     esquiva.innerHTML = esquivaPersonagem
     defesa.innerHTML = defesaPersonagem
+
+    return agilidade
 }
 
 function vitalidadePersonagem(vitalidade) {
@@ -510,9 +596,14 @@ function vitalidadePersonagem(vitalidade) {
 
     totalDefesa();
     totalDefesaMagica();
-    resultado_vitalidade.value = vitalidade
-    defesam.innerHTML = defesaMagicaPersonagem
+
+    grafico.data.datasets[0].data[2] = vitalidade
+    grafico.update();
+
     defesa.innerHTML = defesaPersonagem
+    defesam.innerHTML = defesaMagicaPersonagem
+    
+    return vitalidade
 }
 
 function inteligenciaPersonagem(inteligencia) {
@@ -616,9 +707,13 @@ function inteligenciaPersonagem(inteligencia) {
     totalDefesaMagica()
     totalAtaqueMagico()
 
-    resultado_inteligencia.value = inteligencia
-    defesam.innerHTML = defesaMagicaPersonagem
+    grafico.data.datasets[0].data[3] = inteligencia
+    grafico.update();
+
     ataquem.innerHTML = ataqueMagicoPersonagem
+    defesam.innerHTML = defesaMagicaPersonagem
+    
+    return inteligencia
 }
 
 function destrezaPersonagem(destreza) {
@@ -722,11 +817,13 @@ function destrezaPersonagem(destreza) {
         pontos.innerHTML = pontosDeAtributos;
     }
 
+    grafico.data.datasets[0].data[4] = destreza
+    grafico.update();
 
-    resultado_destreza.value = destreza
+    ataquem.innerHTML = ataqueMagicoPersonagem
     precisao.innerHTML = precisaoPersonagem
     ataque.innerHTML = ataquePersonagem
-    ataquem.innerHTML = ataqueMagicoPersonagem
+    return destreza
 }
 
 function sortePersonagem(luk) {
@@ -828,11 +925,14 @@ function sortePersonagem(luk) {
         pontos.innerHTML = pontosDeAtributos;
     }
 
-    resultado_sorte.value = luk
+    grafico.data.datasets[0].data[5] = luk
+    grafico.update();
+
     ataque.innerHTML = ataquePersonagem
     ataquem.innerHTML = ataqueMagicoPersonagem
     esquiva.innerHTML = esquivaPersonagem
     precisao.innerHTML = precisaoPersonagem
     critico.innerHTML = criticoPersonagem
-    console.log(ataqueMagicoPorSor, ataquePorSor, esquivaPorSor, precisaoPorSor, criticoPorSor)
+    
+    return luk
 }

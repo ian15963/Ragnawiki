@@ -20,6 +20,7 @@ CREATE TABLE bonus(
     Forca int,
     Agilidade int,
     Vitalidade int,
+    Inteligencia int,
     Destreza int,
     Sorte int
 );
@@ -32,7 +33,7 @@ CREATE TABLE classe(
     classeAnterior int,
     fkBonus int,
     CONSTRAINT fkClasseAnterior FOREIGN KEY (classeAnterior) REFERENCES classe(idClasse),
-    CONSTRAINT fkBonus FOREIGN KEY (fkBonus) REFERENCES bonus(idBonus)
+    CONSTRAINT fkBonusClasse FOREIGN KEY (fkBonus) REFERENCES bonus(idBonus)
 );
 
 CREATE TABLE habilidade(
@@ -66,11 +67,13 @@ CREATE TABLE status_build(
 	defesaMagica int,
     precisao int,
     esquiva int,
-    critico int
+    critico int,
+    nivel int,
+    pontos int
 );
 
 CREATE TABLE build(
-	idBonus int auto_increment,
+	idBuild int auto_increment,
     nome varchar(45),
     fkUsuario int,
     fkClasse int,

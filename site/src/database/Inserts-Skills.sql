@@ -49,7 +49,7 @@ INSERT INTO habilidade(nome) VALUES ('Desejo_Arcano'), ('Abracadabra'), ('Furac�
 
 -- Skills de Mercenário
 INSERT INTO habilidade(nome) VALUES ('Perícia_com_Katar'), ('Perícia_com_Mão_Esquerda'), ('Perícia_com_Mão_Direita'), ('Lâminas_Destruidoras'), ('Tocaia'), ('Furtividade'), ('Envenenar_Arma'),
-('Refletir_Veneno'), ('Névoa_Toxica'), ('Explosão Tóxica'), ('Faca_Envenenada'), ('Lâminas Aceleradas');
+('Refletir_Veneno'), ('Névoa_Tóxica'), ('Explosão_Tóxica'), ('Faca_Envenenada'), ('Lâminas_Aceleradas');
 
 -- Skills de Arruaceiro
 INSERT INTO habilidade(nome) VALUES ('Apunhalar'), ('Ataque_Surpresa'), ('Rapto'), ('Afanar'), ('Plágio'), ('Remover_Armadura'), ('Remover_Capacete'), ('Remover_Escudo'),
@@ -74,7 +74,7 @@ INSERT INTO habilidade(nome) VALUES ('Aumentar_Recuperação_de_SP'), ('Perícia
 ('Escudo_Mágico'), ('Santuário'), ('Martírio');
 
 -- Skills de Monge
-INSERT INTO habilidade(nome) VALUES ('Punhos_de_Ferro'), ('Cair_de_Pétalas'), ('Meditação'), ('Combo_Triplo'), ('Combo_Quádruplo'),('O_Último_Dragão'), ('Fúria_Interior'),
+INSERT INTO habilidade(nome) VALUES ('Punhos_de_Ferro'), ('Cair_das_Pétalas'), ('Meditação'), ('Combo_Triplo'), ('Combo_Quádruplo'),('O_Último_Dragão'), ('Fúria_Interior'),
 ('Punho_Supremo_de_Asura'), ('Impacto_Psíquico'), ('Dilema'), ('Passo_Etéreo'), ('Absorver_Esferas_Espirituais'), ('Invocar_Esfera_Espiritual'), ('Disparo_de_Esferas_Espirituais'),
 ('Corpo_Fechado'), ('Concessão_Espiritual'), ('Punhos_Intensos');
 
@@ -317,10 +317,10 @@ INSERT INTO classe_habilidade VALUES
 (29,196),(29,197),(29,198),(29,199),(29,200),(29,201),(29,202),(29,203),(29,204),(29,205),(29,206),(29,207),(29,208),(29,209),(29,210),(29,211),(29,212),(29,213),(29,214),(29,215),
 (29,339),(29,340),(29,341),(29,342),
 -- Skills de Sumo-Sacerdote
-(30, 216), (30,217),(30,218),(30,219),(30,220),(30,221),(30,222),(30,223),(30,224),(30,225),(30,226),(30,227),(30,228),(30,229),(30,230),(30,231),(30,232),(30,233),(30,234),(30,343),
-(30,344),(30,345),(30,346),
+(31, 216), (31,217),(31,218),(31,219),(31,220),(31,221),(31,222),(31,223),(31,224),(31,225),(31,226),(31,227),(31,228),(31,229),(31,230),(31,231),(31,232),(31,233),(31,234),(31,343),
+(31,344),(31,345),(31,346),
 -- Skills de Mestre
-(31,235),(31,236),(31,237),(31,238),(31,239),(31,240),(31,241),(31,242),(31,243),(31,244),(31,245),(31,246),(31,247),(31,248),(31,249),(31,250),(31,251),(31,347),(31,348),(31,349),(31,350),
+(30,235),(30,236),(30,237),(30,238),(30,239),(30,240),(30,241),(30,242),(30,243),(30,244),(30,245),(30,246),(30,247),(30,248),(30,249),(30,250),(30,251),(30,347),(30,348),(30,349),(30,350),
 -- Skills de Atirador de Elite
 (32,252),(32,253),(32,254),(32,255),(32,256),(32,257),(32,258),(32,259),(32,260),(32,261),(32,262),(32,263),(32,264),(32,265),(32,266),(32,267),(32,268),(32,269),(32,270),(32,351),(32,352),
 (32,353),(32,354),
@@ -396,6 +396,6 @@ SELECT COUNT(*) FROM habilidade;
 SELECT nome from Classe;
 SELECT h.nome, c.nome, classeAnterior.nome FROM classe_habilidade as ch JOIN classe as c ON ch.fkClasse = c.idClasse 
 JOIN habilidade as h ON ch.fkHabilidade = h.idHabilidade JOIN classe as classeAnterior ON classeAnterior.idClasse = c.classeAnterior WHERE fkClasse=17;
-
+SELECT b.*, c.nome as 'nomeClasse',  c.descricao, ca.nome as 'classeAnterior', c.tipo FROM classe as c LEFT JOIN classe as ca ON c.classeAnterior = ca.idClasse JOIN bonus as b ON b.idBonus = c.fkBonus WHERE c.idClasse = 1;
 -- SELECT h.nome as 'nomeSkill', c.nome as 'nomeClasse', c.descricao FROM habilidade as h 
 --    JOIN classe as c ON h.fkClasse = c.idClasse WHERE h.fkClasse = c.idClasse;

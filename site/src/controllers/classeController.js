@@ -15,7 +15,7 @@ const getAllClass = (req, res) =>{
 
 const getAllSkills = (req, res) =>{
 
-    var classeId = req.headers.id;
+    var classeId = req.params.id;
 
     classeModel.getAllSkills(classeId).then((data) =>{
         if(data.length > 0){
@@ -27,7 +27,22 @@ const getAllSkills = (req, res) =>{
 
 }
 
+const getClassInformation = (req, res) => {
+
+    var classeId = req.params.id
+
+    classeModel.getClassInformation(classeId).then(data => {
+        if(data.length > 0){
+            res.json({information: data})
+        }else if(data.length == 0){
+            res.status(404).send("Não Conseguimos encontrar as informações sobre essa classe.")
+        }
+    })
+
+}
+
 module.exports = {
     getAllClass,
-    getAllSkills
+    getAllSkills,
+    getClassInformation
 }

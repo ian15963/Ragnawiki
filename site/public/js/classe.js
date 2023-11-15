@@ -1,11 +1,14 @@
 var skills = []
-const getSkills = async (id) => {
+var classInformation = []
+const pathArray = window.location.pathname.split("/");
+const reqParam = pathArray[pathArray.length -1];
 
-    await fetch("/classe/skills", {
+const getSkills = () => {
+
+    fetch(`/classe/skills/${reqParam}`, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json",
-            "id": id
+            "Content-Type": "application/json"
         }
     }).then(data => {
         data.json().then(json => {
@@ -17,6 +20,23 @@ const getSkills = async (id) => {
     console.log(skills)
 }
 
+const getAllInformation = () =>{
+
+    fetch(`/classe/information/${reqParam}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(data => {
+        data.json().then(json => {
+            classInformation = json.information
+            console.log(json);
+        }).catch(err => console.log(err))
+    })
+
+
+}
+
 setTimeout(() => {
     
     var totalSkills = skills.length
@@ -24,19 +44,25 @@ setTimeout(() => {
     var i = 1;
     console.log(2*skills.length/3)
         
-        titulo.innerHTML += `${skills[0].nomeClasse.replaceAll("_", " ")}`;
-        descricao.innerHTML += `<p>${skills[0].descricao}</p>
+        titulo.innerHTML += `${classInformation[0].nomeClasse.replaceAll("_", " ")}`;
+        descricao.innerHTML += `<p>${classInformation[0].descricao}</p>
             <h3>Habilidades</h3>
             <div class="habilidades" id="habilidades"></div>
-            ${!(skills[0].nomeClasse == 'Aprendizes') ?  `<div class="arvore">
+            ${!(classInformation[0].nomeClasse == 'Aprendizes') ?  `<div class="arvore">
                 <h3>Árvore de Habilidades</h3>
-                <img src="../../assets/imgs/Habilidades/${skills[0].nomeClasse}/Skilltree${skills[0].nomeClasse}.png" alt="">
+                <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/Skilltree${classInformation[0].nomeClasse}.png" alt="">
             </div>`: ''}`
         sprite_title.innerHTML += `
-        <img src="../../assets/imgs/Habilidades/${skills[0].nomeClasse}/${skills[0].nomeClasse}partyicn.png" alt="">
-            <h3>${skills[0].nomeClasse}</h3>`
-        sprite.src = `../../assets/imgs/classes/${skills[0].nomeClasse}sprite.png`;
-        arte.src = `../../assets/imgs/Habilidades/${skills[0].nomeClasse}/Arte_${skills[0].nomeClasse}.png`;
+        <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${classInformation[0].nomeClasse}partyicn.png" alt="">
+            <h3>${classInformation[0].nomeClasse}</h3>`
+        sprite.src = `../../assets/imgs/classes/${classInformation[0].nomeClasse}sprite.png`;
+        arte.src = `../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/Arte_${classInformation[0].nomeClasse}.png`;
+        classe_anterior.innerHTML =  classInformation[0].classeAnterior == null ? `` : `<td>Anterior</td>
+                                    <td>${classInformation[0].classeAnterior.replaceAll("_", " ")}</td>`
+        tipo_classe.innerHTML = `<td>Tipo</td>
+                                <td>${classInformation[0].tipo}<td>`
+        bonus_classe.innerHTML += `<td>+${classInformation[0].Forca}</td><td>+${classInformation[0].Agilidade}</td><td>+${classInformation[0].Vitalidade}</td>
+        <td>+${classInformation[0].Inteligencia}</td><td>+${classInformation[0].Destreza}</td><td>+${classInformation[0].Sorte}</td>`
 
 
         if(total == 0){
@@ -45,7 +71,7 @@ setTimeout(() => {
             for(var u = 0; u < totalSkills/3; u++){
                 eval("grupo" + (i)).innerHTML += `
                 <div class="habilidade">
-                        <img src="../../assets/imgs/Habilidades/${skills[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
+                        <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
                         <span>${skills[total].nomeSkill.replaceAll("_"," ")}</span>
                     </div>
                 `;
@@ -60,7 +86,7 @@ setTimeout(() => {
             for(var u = 0; u < totalSkills/3; u++){
                 eval("grupo" + (i)).innerHTML += `
                 <div class="habilidade">
-                        <img src="../../assets/imgs/Habilidades/${skills[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
+                        <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
                         <span>${skills[total].nomeSkill.replaceAll("_"," ")}</span>
                     </div>
                 `;
@@ -74,7 +100,7 @@ setTimeout(() => {
             for(var u = 0; u < totalSkills/3; u++){
                 eval("grupo" + (i)).innerHTML += `
                 <div class="habilidade">
-                        <img src="../../assets/imgs/Habilidades/${skills[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
+                        <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
                         <span>${skills[total].nomeSkill.replaceAll("_"," ")}</span>
                     </div>
                 `;

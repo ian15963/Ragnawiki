@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feiticeiro</title>
+    <title>Aprendiz</title>
     <link rel="stylesheet" href="../../css/classe.css">
 </head>
-<body onload="getSkills(38)">
+<body onload="getSkills(), getAllInformation()">
 
     <div class="header">
         <h1>Ragnawiki</h1>
@@ -33,14 +33,8 @@
             <img id="sprite" alt="Sprite-classe">
             <table id="sprite-table">
                 <tbody>
-                    <tr>
-                        <td>Classe</td>
-                        <td>2-1</td>
-                    </tr>
-                    <tr>
-                        <td>Anterior</td>
-                        <td>Mercadores</td>
-                    </tr>
+                    <tr id="tipo_classe"></tr>
+                    <tr id="classe_anterior"></tr>
                 </tbody>
             </table>
             <div class="title" style="padding: 2% 0 2% 9%;">
@@ -58,13 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>+6</td>
-                        <td>+2</td>
-                        <td>+6</td>
-                        <td>+2</td>
-                        <td>+12</td>
-                        <td>+2</td>
+                    <tr id="bonus_classe">
                     </tr>
                 </tbody>
             </table>

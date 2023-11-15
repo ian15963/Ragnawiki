@@ -197,7 +197,7 @@
             if(classes[i].tipo == "Classe 1"){
                 classes1.innerHTML += `
                 <div class="classe">
-                    <a href="classes/classe1/${classes[i].nome}.html">
+                    <a href="classe/${i+1}">
                         <img src="assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
                         <p>${classes[i].nome}</p>
                     </a>
@@ -207,7 +207,7 @@
             if(classes[i].tipo == "Classe 2"){
                 classes2.innerHTML += `
                 <div class="classe">
-                    <a href="classes/classe2/${classes[i].nome}.html">
+                    <a href="classe/${i+1}">
                         <img src="assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
                         <p>${classes[i].nome.replaceAll("_", " ")}</p>
                     </a>
@@ -227,7 +227,7 @@
             if(classes[i].tipo == "Classe Transcendental"){
                 classesTrans.innerHTML += `
                 <div class="classe">
-                    <a href="classes/classe-trans/${classes[i].nome}.html">
+                    <a href="classe/${i+1}">
                         <img src="assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
                         <p>${classes[i].nome.replaceAll("_", " ")}</p>
                     </a>
@@ -237,7 +237,7 @@
 
         }
 
-        aprendizees.innerHTML = `<a href="classes/Aprendizes.html"><img src="assets/imgs/classes/${classes[0].nome}sprite.png" alt="">
+        aprendizees.innerHTML = `<a href="classe/1"><img src="assets/imgs/classes/${classes[0].nome}sprite.png" alt="">
         <p style="font-weight: 600;">Aprendizes</p></a>`
         console.log(classes[0].nome)
     }, 500)

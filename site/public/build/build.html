@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/build.css">
 </head>
 
-<body onload="getClasses()">
+<body onload="getClasses(), validarSessao(), getBuild()">
 
     <div class="header">
         <h1>Ragnawiki</h1>
@@ -19,12 +19,17 @@
         </div>
     </div>
     <div class="classe">
-        <div class="seletor">
-            <select id="classes" onchange="mostrarClasse()">
-            </select>
+        <div class="grafico">
+            <canvas id="atributo"></canvas>
         </div>
-        <div class="classe_img">
-            <img id="imagem_classe">
+        <div class="personagem">
+            <div class="seletor">
+                <select id="classes" onchange="mostrarClasse()">
+                </select>
+            </div>
+            <div class="classe_img">
+                <img id="imagem_classe">
+            </div>
         </div>
     </div>
     <div class="build">
@@ -87,6 +92,8 @@
     </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../js/build.js"></script>
+<script src="../js/sessao.js"></script>
 
 </html>
