@@ -79,7 +79,7 @@ CREATE TABLE build(
     fkClasse int,
     fkAtributo int,
     fkStatus int,
-    primary key(idBonus, fkUsuario, fkClasse, fkAtributo, fkStatus),
+    primary key(idBuild, fkUsuario, fkClasse, fkAtributo, fkStatus),
     CONSTRAINT fkUsuarioBuild FOREIGN KEY (fkUsuario) REFERENCES usuario(id),
     CONSTRAINT fkClasseBuild FOREIGN KEY (fkClasse) REFERENCES classe(idClasse),
     CONSTRAINT fkAtributoBuild FOREIGN KEY (fkAtributo) REFERENCES atributos_build(idAtributo),
