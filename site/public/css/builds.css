@@ -6,38 +6,66 @@
 }
 
 body{
+    display: flex;
     background-color: #171A29;
 }
 
 .header{
     background-color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 80px;
+    justify-content: center;
+    height: 700px;
+    width: 23%;
+    position: fixed;
 }
 
 .header h1{
-    margin: 0 0 0 30px;
+    margin: 8% 0 0 0;
+    padding: 0 0 6% 25%; 
     color: #00259C;
+    border-bottom: #171A29 2px solid;
+    width: 100%;
 }
 
 .header .navbar{
-    margin: 0 30px 0 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .header .navbar a{
     font-size: 20px;
+    padding-top: 10%;
     text-decoration: none;
     color: #00259C;
-    margin-right: 5px;
+    margin-bottom: 100%;
 }
 
 .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     background-color: white;
-    margin: 8% 0 5% 10%;
-    width: 80%;
-    height: auto;
+    margin: 4% 0 5% 35%;
+    width: 60%;
+    border-radius: 15px;
+}
+
+.container .container_button{
+    padding: 2% 2%;
+    background-color: #0E1019;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.container .container_button a{
+    text-decoration: none;
+    font-size: 16px;
+    color: #e4e4e4;
 }
 
 #builds{
@@ -66,6 +94,43 @@ body{
     margin-bottom: 4%;
 }
 
-.build h2{
-    margin: 2% 0 0 9%;
+.build p{
+    margin: 3% 0 0 -8%;
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
 }
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    padding: 10px 0;
+    justify-content: center;
+  }
+  
+  .pagination-number,
+  .pagination-button{
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+  }
+  
+  .pagination-number:hover,
+  .pagination-button:not(.disabled):hover {
+    background: #fff;
+  }
+  
+  .pagination-number.active {
+    color: #fff;
+    background: #3349ED;
+  }
+
+  .hidden{
+    display: none;
+  }

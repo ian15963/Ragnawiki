@@ -85,3 +85,19 @@ CREATE TABLE build(
     CONSTRAINT fkAtributoBuild FOREIGN KEY (fkAtributo) REFERENCES atributos_build(idAtributo),
     CONSTRAINT fkStatusBuild FOREIGN KEY (fkStatus) REFERENCES status_build(idStatus)
 );
+
+CREATE TABLE habilidades_principais(
+	fkBuild int,
+    fkClasse int,
+    fkStatus int,
+    fkAtributos int,
+    fkUsuario int,
+    fkHabilidade int,
+    primary key(fkBuild, fkClasse, fkStatus, fkAtributos, fkUsuario, fkHabilidade),
+    CONSTRAINT fkBuildHabilidade FOREIGN KEY (fkBuild) REFERENCES build(idBuild),
+    CONSTRAINT fkClasseHabilidadeBuild FOREIGN KEY (fkClasse) REFERENCES classe(idClasse),
+    CONSTRAINT fkStatusHabilidade FOREIGN KEY (fkStatus) REFERENCES status_build(idStatus),
+    CONSTRAINT fkAtributoHabilidade FOREIGN KEY (fkAtributos) REFERENCES atributos_build(idAtributo),
+    CONSTRAINT fkUsuario FOREIGN KEY (fkUsuario) REFERENCES usuario(id),
+    CONSTRAINT fkHabilidade FOREIGN KEY (fkHabilidade) REFERENCES habilidade(idHabilidade)
+);

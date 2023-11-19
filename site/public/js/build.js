@@ -1,8 +1,44 @@
 var allClasses;
 var buildsUsuario = []
-const getClasses = async () => {
+var allSkills = []
+var mainSkills = []
 
-    await fetch("/classe/all-classes", {
+const pathArray = window.location.pathname.split("/");
+const reqParam = pathArray[pathArray.length -1];
+
+const createdSuccessfully = () =>{
+    Swal.fire({
+        title: "Build Criada Com Sucesso",
+        width: 500,
+        height: 300,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff",
+        imageUrl: "../assets/asurachampion4fd.gif",
+        html: `
+        <button><a href="../build/build.html">Voltar para suas builds</a><button/>,
+        ,
+        and other HTML tags`,
+        // imageWidth: 200
+      });
+}
+
+const updatedSuccessfully = () =>{
+    Swal.fire({
+        title: "Build Atualizada Com Sucesso",
+        width: 500,
+        height: 300,
+        padding: "3em",
+        color: "green",
+        background: "#fff",
+        imageUrl: "../assets/kafra.gif",
+        imageWidth: 200,
+      });
+}
+
+const getClasses = () => {
+
+    fetch("/classe/all-classes", {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -18,74 +54,70 @@ const getClasses = async () => {
 
 }
 
-const getBuild = () =>{
+ const getBuild = () =>{
 
-    var idBuild = sessionStorage.getItem("idBuild");
+     var idUsuario = sessionStorage.getItem("id")
 
-    fetch(`/build/getOne/${idBuild}`, {
+     reqParam == "newBuild" ? "" : 
+    fetch(`/build/getOne/${reqParam}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "id": idUsuario
+        }
+    }).then(data =>{
+        if(data.ok){
+            data.json().then(json =>{
+                buildsUsuario = json.build,
+                sessionStorage.build = JSON.stringify(json.build)
+            })
+        }
+    }).catch(err => console.log(err))
+
+}
+
+const getSkills = () => {
+
+    fetch(`/classe/skills/${classeId}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
     }).then(data =>{
-        if(data.ok){
-            data.json().then(json =>{
-                buildsUsuario = json.build
-            })
-        }
+        data.json().then(json =>{
+            allSkills = json.classe;
+        })
     })
 
 }
 
-setTimeout(() => {
 
-    allClasses.sort((x, y) => {
-        let a = x.nome.toUpperCase();
-        let b = y.nome.toUpperCase();
-
-        return a == b ? 0 : a > b ? 1 : -1
-    })
-
-    for (var i = 0; i < allClasses.length; i++) {
-        
-        classes.innerHTML += `<option value="${allClasses[i].nome}">${allClasses[i].nome.replaceAll("_", " ")}</option>`
-
-        if(allClasses[i].nome){
-            imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
-        }
-
-    }
-
-    pontos.innerHTML = buildsUsuario[0] ? buildsUsuario[0].pontos : 0;
-    ataque.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataque : 1;
-    ataquem.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataqueMagico : 1;
-    defesa.innerHTML = buildsUsuario[0] ? buildsUsuario[0].defesa : 1;
-    defesam.innerHTML = buildsUsuario[0] ? buildsUsuario[0].defesaMagica: 1;
-    precisao.innerHTML = buildsUsuario[0] ? buildsUsuario[0].precisao : 177;
-    esquiva.innerHTML = buildsUsuario[0] ? buildsUsuario[0].esquiva : 102;
-    critico.innerHTML = buildsUsuario[0] ? buildsUsuario[0].critico : 1;
-    nivel.value = buildsUsuario[0] ? buildsUsuario[0].nivel : 1;
-    resultado_forca.value = buildsUsuario[0] ? forcaPersonagem(buildsUsuario[0].Forca) : 1;
-    resultado_agilidade.value = buildsUsuario[0] ? agilidadePersonagem(buildsUsuario[0].Agilidade) : 1;
-    resultado_vitalidade.value = buildsUsuario[0] ? vitalidadePersonagem(buildsUsuario[0].Vitalidade) : 1;
-    resultado_inteligencia.value = buildsUsuario[0] ? inteligenciaPersonagem(buildsUsuario[0].Inteligencia) : 1;
-    resultado_destreza.value = buildsUsuario[0] ? destrezaPersonagem(buildsUsuario[0].Destreza) : 1;
-    resultado_sorte.value = buildsUsuario[0] ? sortePersonagem(buildsUsuario[0].Sorte) : 1;
-    imagem_classe.src = buildsUsuario[0] ? `../assets/imgs/classes/${buildsUsuario[0].nomeClasse}sprite.png` : `../assets/imgs/classes/${classes.value}sprite.png`
-    console.log(allClasses, buildsUsuario)
-}, 500)
-
-var classeId = 26;
 //Mostrar classe Selecionada
 const mostrarClasse = () => {
 
     imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
+    imagem.src = `../assets/imgs/classes/${classes.value}sprite.png`
 
     for(var i = 0; i < allClasses.length; i++){
         if(allClasses[i].nome == classes.value){
             classeId = allClasses[i].idClasse;
+            getSkills()
             break
         }
+    }
+
+    skills_principais.innerHTML = ""
+
+    setTimeout(() => {
+        mostrarSkill()
+    }, 500)
+}
+
+//Mostrar skills da classe
+const mostrarSkill = () => {
+    
+    for(var i = 0; i < allSkills.length; i++){
+        skills_principais.innerHTML += `<option value="${allSkills[i].nomeSkill}#${allSkills[i].idHabilidade}">${allSkills[i].nomeSkill.replaceAll("_"," ")}</option>`
     }
 
 }
@@ -95,6 +127,7 @@ const mostrarClasse = () => {
 const saveBuild = () =>{
 
     var idUsuario = sessionStorage.getItem("id");
+    nomeDaBuild = nome.value
 
     fetch("/build/save", {
         method: "POST",
@@ -118,10 +151,12 @@ const saveBuild = () =>{
             nivelPersonagem: nivel.value,
             pontosDeAtributos: pontosDeAtributos,
             id: idUsuario,
-            idClasse: classeId
+            idClasse: classeId,
+            nomeBuild: nomeDaBuild
         })
         }).then(data => {
             if(data.ok){
+                createdSuccessfully()
                 console.log(data)
                 console.log("Build criada com sucesso")
             }else{
@@ -132,10 +167,123 @@ const saveBuild = () =>{
 
 }
 
+// Requisição para atualizar build
+const updateAtributos = () =>{
+
+    var build = JSON.parse(sessionStorage.getItem("build"));
+
+    var idAtributo = build[0].idAtributo;
+    var idStatus = build[0].idStatus;
+    var idBuild = sessionStorage.getItem("idBuild");
+    nomeDaBuild = nome.value;
+
+    fetch("/build/update/atributos", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            forcaPersonagem: resultado_forca.value,
+            agilidadePersonagem: resultado_agilidade.value,
+            vitalidadePersonagem: resultado_vitalidade.value,
+            inteligenciaPersonagem: resultado_inteligencia.value,
+            destrezaPersonagem: resultado_destreza.value,
+            sortePersonagem: resultado_sorte.value,
+            ataquePersonagem: ataquePersonagem,
+            ataqueMagicoPersonagem: ataqueMagicoPersonagem,
+            defesaPersonagem: defesaPersonagem,
+            defesaMagicaPersonagem: defesaMagicaPersonagem,
+            precisaoPersonagem: precisaoPersonagem,
+            esquivaPersonagem: esquivaPersonagem,
+            criticoPersonagem: criticoPersonagem,
+            nivelPersonagem: nivel.value,
+            pontosDeAtributos: pontosDeAtributos,
+            idStatus: idStatus,
+            idAtributo: idAtributo,
+            idBuild: idBuild,
+            nomeBuild: nomeDaBuild,
+            idClasse: classeId
+        })
+        }).then(data => {
+            if(data.ok){
+                data.json().then((data) => {
+                    updatedSuccessfully()
+                    console.log(data)
+                    console.log("Build atualizada")
+            })
+            }else{
+                console.log(data)
+                console.log("Erro ao criar Build")
+            }
+    })
+
+}
+
+setTimeout(() => {
+    
+    allClasses.sort((x, y) => {
+        let a = x.nome.toUpperCase();
+        let b = y.nome.toUpperCase();
+
+        return a == b ? 0 : a > b ? 1 : -1
+    })
+
+    for (var i = 0; i < allClasses.length; i++) {
+        
+        classes.innerHTML += `<option value="${allClasses[i].nome}">${allClasses[i].nome.replaceAll("_", " ")}</option>`
+
+        if(allClasses[i].nome){
+            imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
+        }
+
+    }
+
+    pontos.innerHTML = buildsUsuario[0] ? buildsUsuario[0].pontos : 100;
+    ataque.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataque : 1;
+    ataquem.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataqueMagico : 1;
+    defesa.innerHTML = buildsUsuario[0] ? buildsUsuario[0].defesa : 1;
+    defesam.innerHTML = buildsUsuario[0] ? buildsUsuario[0].defesaMagica: 1;
+    precisao.innerHTML = buildsUsuario[0] ? buildsUsuario[0].precisao : 177;
+    esquiva.innerHTML = buildsUsuario[0] ? buildsUsuario[0].esquiva : 102;
+    critico.innerHTML = buildsUsuario[0] ? buildsUsuario[0].critico : 1;
+    nivel.value = buildsUsuario[0] ? buildsUsuario[0].nivel : 1;
+    resultado_forca.value = buildsUsuario[0] ? forcaPersonagem(buildsUsuario[0].Forca) : 1;
+    resultado_agilidade.value = buildsUsuario[0] ? agilidadePersonagem(buildsUsuario[0].Agilidade) : 1;
+    resultado_vitalidade.value = buildsUsuario[0] ? vitalidadePersonagem(buildsUsuario[0].Vitalidade) : 1;
+    resultado_inteligencia.value = buildsUsuario[0] ? inteligenciaPersonagem(buildsUsuario[0].Inteligencia) : 1;
+    resultado_destreza.value = buildsUsuario[0] ? destrezaPersonagem(buildsUsuario[0].Destreza) : 1;
+    resultado_sorte.value = buildsUsuario[0] ? sortePersonagem(buildsUsuario[0].Sorte) : 1;
+    imagem_classe.src = buildsUsuario[0] ? `../assets/imgs/classes/${buildsUsuario[0].nomeClasse}sprite.png` : `../assets/imgs/classes/${classes.value}sprite.png`
+    nomeDaBuild = buildsUsuario[0] ? nome.value = buildsUsuario[0].nomeBuild : ""
+    imagem.src = buildsUsuario[0] ? `../assets/imgs/classes/${buildsUsuario[0].nomeClasse}sprite.png` : `../assets/imgs/classes/${classes.value}sprite.png`
+    build_button.innerHTML = buildsUsuario[0] ? `<button class="build_button" onclick="updateAtributos()">Atualizar Build</button>` : `<button class="build_button" onclick="saveBuild()">Criar Build</button>`
+    classeId = buildsUsuario[0] ? buildsUsuario[0].idClasse : 26;
+
+    getSkills()
+
+    setTimeout(() => {
+        mostrarSkill()
+    }, 500)
+}, 600)
+
+
 //Gráfico de atributos
 var atributoGrafico = document.getElementById("atributo");
+var atributoGrafico2 = document.getElementById("atributo2");
 
-    var grafico = new Chart(atributoGrafico, {
+var grafico = new Chart(atributoGrafico, {
+        type: "radar",
+        data: {
+                labels: ['Força', 'Agilidade', 'Vitalidade', 'Inteligencia', 'Destreza', 'Sorte'],
+                datasets: [{
+                    label: 'Atributos do Personagem',
+                    data: [1, 1, 1, 1, 1, 1],
+            
+                }]
+    }
+})
+
+    var grafico2 = new Chart(atributoGrafico2, {
         type: "radar",
         data: {
                 labels: ['Força', 'Agilidade', 'Vitalidade', 'Inteligencia', 'Destreza', 'Sorte'],
@@ -291,6 +439,7 @@ function analisarNivel() {
     pontosDeAtributos -= pontosGastosEmInteligencia
     pontosDeAtributos -= pontosGastosEmDestreza
     pontosDeAtributos -= pontosGastosEmSorte
+    
     if (pontosDeAtributos < 0) {
         pontos.style.color = "red"
         pontos.innerHTML = pontosDeAtributos;
@@ -302,8 +451,7 @@ function analisarNivel() {
 }
 
 function forcaPersonagem(forca) {
-    console.log(forca)
-
+    
     ataquePorFor = 0
     pontosGastosEmForca = 0
 
@@ -396,9 +544,11 @@ function forcaPersonagem(forca) {
     totalAtaque();
     grafico.data.datasets[0].data[0] = forca
     grafico.update();
+    grafico2.data.datasets[0].data[0] = forca
+    grafico2.update();
     ataque.innerHTML = ataquePersonagem
-    return forca
     resultado_forca.value = forca
+    return forca
 }
 
 function agilidadePersonagem(agilidade) {
@@ -502,10 +652,12 @@ function agilidadePersonagem(agilidade) {
 
     grafico.data.datasets[0].data[1] = agilidade
     grafico.update();
+    grafico2.data.datasets[0].data[1] = agilidade
+    grafico2.update();
 
     esquiva.innerHTML = esquivaPersonagem
     defesa.innerHTML = defesaPersonagem
-
+    resultado_agilidade.value = agilidade
     return agilidade
 }
 
@@ -599,10 +751,12 @@ function vitalidadePersonagem(vitalidade) {
 
     grafico.data.datasets[0].data[2] = vitalidade
     grafico.update();
+    grafico2.data.datasets[0].data[2] = vitalidade
+    grafico2.update();
 
     defesa.innerHTML = defesaPersonagem
     defesam.innerHTML = defesaMagicaPersonagem
-    
+    resultado_vitalidade.value = vitalidade
     return vitalidade
 }
 
@@ -709,10 +863,12 @@ function inteligenciaPersonagem(inteligencia) {
 
     grafico.data.datasets[0].data[3] = inteligencia
     grafico.update();
+    grafico2.data.datasets[0].data[3] = inteligencia
+    grafico2.update();
 
     ataquem.innerHTML = ataqueMagicoPersonagem
     defesam.innerHTML = defesaMagicaPersonagem
-    
+    resultado_inteligencia.value = inteligencia
     return inteligencia
 }
 
@@ -819,10 +975,13 @@ function destrezaPersonagem(destreza) {
 
     grafico.data.datasets[0].data[4] = destreza
     grafico.update();
+    grafico2.data.datasets[0].data[4] = destreza
+    grafico2.update();
 
     ataquem.innerHTML = ataqueMagicoPersonagem
     precisao.innerHTML = precisaoPersonagem
     ataque.innerHTML = ataquePersonagem
+    resultado_destreza.value = destreza
     return destreza
 }
 
@@ -927,12 +1086,14 @@ function sortePersonagem(luk) {
 
     grafico.data.datasets[0].data[5] = luk
     grafico.update();
+    grafico2.data.datasets[0].data[4] = luk
+    grafico2.update();
 
     ataque.innerHTML = ataquePersonagem
     ataquem.innerHTML = ataqueMagicoPersonagem
     esquiva.innerHTML = esquivaPersonagem
     precisao.innerHTML = precisaoPersonagem
     critico.innerHTML = criticoPersonagem
-    
+    resultado_sorte.value = luk
     return luk
 }

@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: #171A29;
+}
+
+
+.classe{
+    padding: 0 2% 0 0;
+}
 .header{
     background-color: white;
     display: flex;
@@ -37,6 +45,7 @@
     background-color: #E5E5E5;
     width: 70%;
     height: 90%;
+    margin-top: 2.55%;
 }
 
 .sprite .title{
@@ -56,8 +65,11 @@
 }
 
 .content{
+    border-radius: 15px;
+    margin: 7%;
     display: flex;
-    padding: 7%;
+    padding: 5%;
+    background-color: white;
 }
 
 .content h2{
@@ -65,20 +77,20 @@
 }
 
 .descricao{
-    margin-top: 3%;
+    margin-top: 3%;;
     display: flex;
     flex-direction: column;
 }
 
 .descricao h3{
-    margin-top: 3%;
+    margin-top: 5%;
+    font-size: 22px;
 }
 
 .habilidades{
     padding: 4% 0 10% 0;
-    max-width: 100%;
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .grupo{
@@ -93,10 +105,13 @@
     margin-top: 7%;
 }
 
+.habilidade span{
+    font-size: 18px;
+}
+
 
 .habilidade img{
     margin-right: 10px;
-    font-size: 16px;
 }
 
 .arvore{

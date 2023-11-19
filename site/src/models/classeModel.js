@@ -9,7 +9,7 @@ const getAllClass = () =>{
 // para cada (habilidade): createDiv 
 const getAllSkills = (id) =>{
     
-    var instrucao = `SELECT h.nome as 'nomeSkill' FROM classe_habilidade as ch JOIN habilidade as h ON ch.fkHabilidade = h.idHabilidade WHERE ch.fkClasse = ${id};
+    var instrucao = `SELECT h.nome as 'nomeSkill', h.idHabilidade FROM classe_habilidade as ch JOIN habilidade as h ON ch.fkHabilidade = h.idHabilidade WHERE ch.fkClasse = ${id};
     ;`
     
     console.log(instrucao)

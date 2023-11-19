@@ -11,6 +11,10 @@ const getSkills = () => {
             "Content-Type": "application/json"
         }
     }).then(data => {
+        console.log(data.status)
+        if(data.status == 404){
+            window.location = `/classes`;
+        }
         data.json().then(json => {
             skills = json.classe
             console.log(json)
@@ -38,6 +42,8 @@ const getAllInformation = () =>{
 }
 
 setTimeout(() => {
+
+    arte.style.maxWidth = `300px`;
     
     var totalSkills = skills.length
     var total = 0

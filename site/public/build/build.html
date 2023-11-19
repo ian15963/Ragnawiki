@@ -13,87 +13,120 @@
     <div class="header">
         <h1>Ragnawiki</h1>
         <div class="navbar">
-            <a href="/index.html">Inicio</a>
-            <a href="/episodios.html">Episódios</a>
-            <a href="/classes.html">Classes</a>
+            <a id="simulador" onclick="mostrarSimulador()">Simulador de Atributos</a>
+            <a id="habilidade" onclick="mostrarSkills()">Habilidades</a>
         </div>
     </div>
-    <div class="classe">
-        <div class="grafico">
-            <canvas id="atributo"></canvas>
-        </div>
-        <div class="personagem">
-            <div class="seletor">
-                <select id="classes" onchange="mostrarClasse()">
-                </select>
-            </div>
-            <div class="classe_img">
-                <img id="imagem_classe">
-            </div>
-        </div>
-    </div>
-    <div class="build">
-        <div class="build-atributos">
-            <div class="atributo">
-                For: <input type="number" id="resultado_forca" oninput="forcaPersonagem(this.value)">
-            </div>
-            <div class="atributo">
-                Agi: <input type="number" id="resultado_agilidade" oninput="agilidadePersonagem(this.value)">
-            </div>
-            <div class="atributo">
-                Vit: <input id="resultado_vitalidade" oninput="vitalidadePersonagem(this.value)" type="number">
-            </div>
-            <div class="atributo">
-                Int: <input type="number" id="resultado_inteligencia" oninput="inteligenciaPersonagem(this.value)">
-            </div>
-            <div class="atributo">
-                Des: <input type="number" id="resultado_destreza" oninput="destrezaPersonagem(this.value)">
-            </div>
-            <div class="atributo">
-                Sor: <input type="number" id="resultado_sorte" oninput="sortePersonagem(this.value)">
-            </div>
-        </div>
-        <div class="build-status">
-            <div class="nivel">
-                Nível do Personagem:<input type="number" id="nivel" oninput="analisarNivel()">
-            </div>
-            <div class="status">
-                <div class="status1">
-                    <div>
-                        Ataque: <span id="ataque">1</span> + X
-                    </div>
-                    <div>
-                        Ataque Mágico: <span id="ataquem">1</span> + X
-                    </div>
-                    <div>
-                        Precisão: <span id="precisao">177</span> + X
-                    </div>
-                    <div>
-                        Crítico: <span id="critico">1</span> + X
-                    </div>
+    <div id="simulador_build">
+        <div class="container">
+            <div class="classe">
+                <div style="margin: 4% 0 0 60%; width: 100%;">
+                    <label for="nome" style="font-size: 20px;">Digite o nome da build:</label>
+                    <input id="nome" type="text" style="font-size: 16px;">
                 </div>
-                <div class="status2">
-                    <div>
-                        Defesa: <span id="defesa">1</span> + X
+                <div style="display: flex; margin: 7% 10% 3% 0;">
+                    <div class="grafico">
+                        <canvas id="atributo"></canvas>
                     </div>
-                    <div>
-                        Defesa Mágica: <span id="defesam">1</span> + X
-                    </div>
-                    <div>
-                        Esquiva: <span id="esquiva">102</span> + X
-                    </div>
-                    <div>
-                        Pontos: <span id="pontos"></span>
+                    <div class="personagem">
+                        <div class="seletor">
+                            <select id="classes" onchange="mostrarClasse()">
+                            </select>
+                        </div>
+                        <div class="classe_img">
+                            <img id="imagem_classe">
+                        </div>
                     </div>
                 </div>
             </div>
-            <button onclick="saveBuild()">Criar Build</button>
+        </div>
+        <div class="build">
+            <div class="build-atributos">
+                <div class="atributo">
+                    For: <input type="number" id="resultado_forca" oninput="forcaPersonagem(this.value)">
+                </div>
+                <div class="atributo">
+                    Agi: <input type="number" id="resultado_agilidade" oninput="agilidadePersonagem(this.value)">
+                </div>
+                <div class="atributo">
+                    Vit: <input id="resultado_vitalidade" oninput="vitalidadePersonagem(this.value)" type="number">
+                </div>
+                <div class="atributo">
+                    Int: <input type="number" id="resultado_inteligencia" oninput="inteligenciaPersonagem(this.value)">
+                </div>
+                <div class="atributo">
+                    Des: <input type="number" id="resultado_destreza" oninput="destrezaPersonagem(this.value)">
+                </div>
+                <div class="atributo">
+                    Sor: <input type="number" id="resultado_sorte" oninput="sortePersonagem(this.value)">
+                </div>
+            </div>
+            <div class="build-status">
+                <div class="nivel">
+                    Nível do Personagem:<input type="number" id="nivel" oninput="analisarNivel()">
+                </div>
+                <div class="status">
+                    <div class="status1">
+                        <div>
+                            Ataque: <span id="ataque">1</span> + X
+                        </div>
+                        <div>
+                            Ataque Mágico: <span id="ataquem">1</span> + X
+                        </div>
+                        <div>
+                            Precisão: <span id="precisao">177</span> + X
+                        </div>
+                        <div>
+                            Crítico: <span id="critico">1</span> + X
+                        </div>
+                    </div>
+                    <div class="status2">
+                        <div>
+                            Defesa: <span id="defesa">1</span> + X
+                        </div>
+                        <div>
+                            Defesa Mágica: <span id="defesam">1</span> + X
+                        </div>
+                        <div>
+                            Esquiva: <span id="esquiva">102</span> + X
+                        </div>
+                        <div>
+                            Pontos: <span id="pontos"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="build_button">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="habilidade_build">
+        <div class="container" style="flex-direction: column;">
+            <div class="habilidade">
+                <div class="grafico2">
+                    <canvas id="atributo2"></canvas>
+                </div>
+                <div class="classe_img2">
+                    <img id="imagem">
+                </div>
+            </div>
+            <div class="skill_seletor">
+                <h2>Habilidades Principais:</h2>
+                <select id="skills_principais"></select>
+            </div>
+            <div class="skill_buttons">
+                <button onclick="adicionarHabilidade()">Adicionar Habilidade</button>
+                <button onclick="removerHabilidades()">Remover Habilidade</button>
+            </div>
+            <div id="skills"></div>
         </div>
     </div>
 
 </body>
+<script src="../js/sessao.js"></script>
+<script src="../js/build_habilidade.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../js/build.js"></script>
-<script src="../js/sessao.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

@@ -10,15 +10,32 @@
     <div class="header">
         <h1>Ragnawiki</h1>
         <div class="navbar">
-            <a href="/index.html">Inicio</a>
-            <a href="/episodios.html">Episódios</a>
-            <a href="/classes.html">Classes</a>
+            <a href="/index.html">Suas Builds</a>
+            <a href="/episodios.html">Visão Geral</a>
         </div>
     </div>
 
     <div class="container">
+        <div style="display: flex; justify-content: space-between; padding: 5% 12% 0 12%;">
+            <div class="container_title">
+                <h1>Suas Builds</h1>
+            </div>
+            <div class="container_button" onclick="newBuild()">
+                <a>Nova Build</a>
+            </div>
+        </div>
         <div id="builds"></div>
+        <nav class="pagination-container">
+            <button class="pagination-button" id="prev-button">
+              &lt;
+            </button>
+            <div id="pagination-numbers"></div>
+            <button class="pagination-button" id="next-button">
+              &gt;
+            </button>
+        </nav>
     </div>
 </body>
 <script src="../js/builds.js"></script>
+<script src="../js/paginacao.js"></script>
 </html>

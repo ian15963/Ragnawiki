@@ -8,7 +8,7 @@ var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 8080;
 
 var app = express();
 
-var indexRouter = require("./src/routes/index");
+var indexRouter = require("./index");
 var usuarioRouter = require("./src/routes/usuarios");
 var classeRouter = require("./src/routes/classe");
 var buildRouter = require("./src/routes/build");

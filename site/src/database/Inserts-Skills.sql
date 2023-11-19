@@ -44,7 +44,7 @@ INSERT INTO habilidade(nome) VALUES ('Coluna_de_Pedra'), ('Pântano_dos_Mortos')
 -- Skills de Sábio
 INSERT INTO habilidade(nome) VALUES ('Desejo_Arcano'), ('Abracadabra'), ('Furacão'), ('Vulcão'), ('Dilúvio'), ('Sentido_Sobrenatural'), ('Encantar_com_Chama'),
 ('Encantar_com_Geada'), ('Encantar_com_Ventania'), ('Encantar_com_Terremoto'), ('Conjuração_Livre'), ('Estudo_de_Livros'), ('Dragonologia'), ('Coluna_de_Pedra'),
-('Fúria_da_Terra'), ('Espelho_Mágico'), ('Espelho Mágico'), ('Desconcentrar'), ('Cancelar_Magia'), ('Desencantar'), ('Proteger_Terreno'), ('Criar_Conversor_Elemental'),
+('Fúria_da_Terra'), ('Espelho_Mágico'), ('Desconcentrar'), ('Cancelar_Magia'), ('Desencantar'), ('Proteger_Terreno'), ('Criar_Conversor_Elemental'),
 ('Mudança_Elemental');
 
 -- Skills de Mercenário
@@ -161,7 +161,7 @@ INSERT INTO habilidade(nome) VALUES ('Ofensiva_Fatal'), ('Desejo_das_Sombras'), 
 ('Máscara_da_Tolice'),('Máscara_da_Ociosidade'), ('Máscara_da_Vulnerabilidade'), ('Máscara_do_Infortúnio');
 
 -- Skills de Mecânico
-INSERT INTO habilidade(nome) VALUES ('Fúria_do_Furação'), ('Arremesso_de_Machado'), ('Brandir_Machado'), ('Erupção_de_Magma'), ('Maestria_com_Machados'), ('Sabedoria_de_Hefesto'), ('Artilharia_Caçadora'),
+INSERT INTO habilidade(nome) VALUES ('Fúria_do_Furacão'), ('Arremesso_de_Machado'), ('Brandir_Machado'), ('Erupção_de_Magma'), ('Maestria_com_Machados'), ('Sabedoria_de_Hefesto'), ('Artilharia_Caçadora'),
 ('Artilharia_Arcana'), ('Remover_Artilharia'), ('Licença_de_Pilotagem'), ('Reforçar_Estrutura'), ('Aceleração'), ('Reparar'), ('Propulsão_Dianteira'), ('Propulsão_Traseira'), ('Canhão'), ('Metralhadora'), ('Punho_Foguete'),
 ('Lança_Chamas'), ('Gás_Criogênico'), ('Bate_Estaca'), ('Autodestruição'), ('Campo_Magnético'), ('Campo_Protetor'), ('Reconfigurar_Elemento'), ('Sensor_Infravermelho'), ('Analisar'), ('Campo_de_Invisibilidade'),
 ('Resfriamento'), ('Planar');
