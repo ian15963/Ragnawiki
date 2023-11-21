@@ -20,6 +20,8 @@ const updateBuild = (nome, idClasse, idBuild) =>{
 
     var instrucao = `UPDATE build set nome = '${nome}', fkClasse = ${idClasse} WHERE idBuild = ${idBuild};`
 
+    console.log(instrucao)
+
     return database.executar(instrucao);
 
 }
@@ -28,20 +30,68 @@ const updateAtributos = (forca, agilidade, vitalidade, inteligencia, destreza, s
 
     var instrucao = `call atualizarDados(${forca}, ${agilidade}, ${vitalidade}, ${inteligencia}, ${destreza}, ${sorte}, ${ataque}, ${ataquem}, ${defesa}, ${defesam}, ${precisao}, ${esquiva}, ${critico}, ${nivel}, ${pontos}, ${idStatus}, ${idAtributo});`
 
+    console.log(instrucao)
+
     return database.executar(instrucao);
 }
 
 const getOne = (idBuild, idUsuario) =>{
 
-    var instrucao = `SELECT c.idClasse, c.nome as 'nomeClasse', ab.*, sb.*, b.nome as 'nomeBuild' FROM build as b JOIN atributos_build as ab ON b.fkAtributo = ab.idAtributo JOIN status_build as sb ON b.fkStatus = sb.idStatus 
+    var instrucao = `SELECT c.idClasse, c.nome as 'nomeClasse', ab.*, sb.*, b.nome as 'nomeBuild', b.descricao FROM build as b JOIN atributos_build as ab ON b.fkAtributo = ab.idAtributo JOIN status_build as sb ON b.fkStatus = sb.idStatus 
     JOIN classe as c ON b.fkClasse = c.idClasse JOIN usuario as u ON u.id = b.fkUsuario WHERE b.idBuild = ${idBuild} AND u.id = ${idUsuario};`;
 
     return database.executar(instrucao)
 }
 
-const saveBuildSkills = () =>{
+const saveBuildSkills = (idBuild, idClasse, idStatus, idAtributo, idUsuario, idHabilidade) =>{
+
+    var instrucao = `INSERT INTO habilidades_principais VALUES (${idBuild}, ${idClasse}, ${idStatus}, ${idAtributo}, ${idUsuario}, ${idHabilidade});`;
+
+    console.log(instrucao)
     
+    return database.executar(instrucao)
 }
+
+const getBuildSkills = (idUsuario, idBuild) =>{
+
+    var instrucao = `SELECT h.* FROM habilidades_principais as hp  JOIN habilidade as h ON hp.fkHabilidade = h.idHabilidade JOIN classe as c ON hp.fkClasse = c.idClasse WHERE hp.fkUsuario = ${idUsuario} AND hp.fkBuild = ${idBuild};
+    `
+
+    console.log(instrucao)
+
+    return database.executar(instrucao)
+}
+
+const updateDescription = (idBuild, description) => {
+
+    var instrucao = `UPDATE build set descricao = '${description}' WHERE idBuild = ${idBuild}`;
+
+    console.log(instrucao)
+
+    return database.executar(instrucao);
+
+}
+
+const deleteAllSkills = (idBuild) => {
+
+    var instrucao = `DELETE FROM habilidades_principais WHERE fkBuild = ${idBuild}`;
+
+    console.log(instrucao);
+
+    return database.executar(instrucao)
+
+}
+
+const deleteBuild = (idBuild) => {
+
+    var instrucao = `DELETE FROM build WHERE idBuild = ${idBuild}`;
+
+    console.log(instrucao);
+
+    return database.executar(instrucao);
+
+}
+
 
 
 module.exports = {
@@ -49,5 +99,10 @@ module.exports = {
     getAll,
     getOne,
     updateAtributos,
-    updateBuild
+    updateBuild,
+    saveBuildSkills,
+    getBuildSkills,
+    updateDescription,
+    deleteAllSkills,
+    deleteBuild
 }

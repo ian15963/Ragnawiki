@@ -5,37 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Builds</title>
     <link rel="stylesheet" href="../css/builds.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
-<body onload="getAllBuilds()">
+<body onload="getAllBuilds(), validarSessao()">
     <div class="header">
         <h1>Ragnawiki</h1>
         <div class="navbar">
-            <a href="/index.html">Suas Builds</a>
-            <a href="/episodios.html">Visão Geral</a>
+            <a id="suas_builds" onclick="mostrarBuild()">Suas Builds</a>
+            <a id="visao_geral" onclick="visaoGeral()">Visão Geral</a>
+            <a onclick="deslogar()" id="logout">Deslogar</a>
         </div>
     </div>
+    
 
-    <div class="container">
-        <div style="display: flex; justify-content: space-between; padding: 5% 12% 0 12%;">
-            <div class="container_title">
-                <h1>Suas Builds</h1>
+    <div id="all_builds">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; padding: 5% 12% 0 12%;">
+                <div class="container_title">
+                    <h1>Suas Builds</h1>
+                </div>
+                <div class="container_button" onclick="newBuild()">
+                    <a>Nova Build</a>
+                </div>
             </div>
-            <div class="container_button" onclick="newBuild()">
-                <a>Nova Build</a>
+            <div id="builds"></div>
+            <nav class="pagination-container">
+                <button class="pagination-button" id="prev-button">
+                  &lt;
+                </button>
+                <div id="pagination-numbers"></div>
+                <button class="pagination-button" id="next-button">
+                  &gt;
+                </button>
+            </nav>
+        </div>
+    </div>
+    <div id="all_informations">
+        <div class="container">
+            <h2>Ranking de Builds</h2>
+            <div class="main">
+                
             </div>
         </div>
-        <div id="builds"></div>
-        <nav class="pagination-container">
-            <button class="pagination-button" id="prev-button">
-              &lt;
-            </button>
-            <div id="pagination-numbers"></div>
-            <button class="pagination-button" id="next-button">
-              &gt;
-            </button>
-        </nav>
     </div>
 </body>
 <script src="../js/builds.js"></script>
 <script src="../js/paginacao.js"></script>
+<script src="../js/sessao.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

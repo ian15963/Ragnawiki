@@ -6,34 +6,35 @@ var mainSkills = []
 const pathArray = window.location.pathname.split("/");
 const reqParam = pathArray[pathArray.length -1];
 
-const createdSuccessfully = () =>{
+const createdSuccessfully = (id) =>{
     Swal.fire({
         title: "Build Criada Com Sucesso",
         width: 500,
-        height: 300,
         padding: "3em",
         color: "#716add",
         background: "#fff",
         imageUrl: "../assets/asurachampion4fd.gif",
-        html: `
-        <button><a href="../build/build.html">Voltar para suas builds</a><button/>,
-        ,
-        and other HTML tags`,
         // imageWidth: 200
-      });
+      }).then(() => {
+          window.location = `/build/${id}`
+      }
+      );
 }
 
-const updatedSuccessfully = () =>{
+const updatedSuccessfully = (texto) =>{
     Swal.fire({
-        title: "Build Atualizada Com Sucesso",
+        title: texto,
         width: 500,
         height: 300,
         padding: "3em",
         color: "green",
         background: "#fff",
         imageUrl: "../assets/kafra.gif",
-        imageWidth: 200,
-      });
+        imageWidth: 150,
+      }).then(() => {
+          window.location = `/build/${reqParam}`
+      }
+      );
 }
 
 const getClasses = () => {
@@ -78,14 +79,20 @@ const getClasses = () => {
 
 const getSkills = () => {
 
-    fetch(`/classe/skills/${classeId}`, {
+    var id = sessionStorage.getItem("id")
+
+    reqParam == "newBuild" ? "" :
+    fetch(`/build/skills/${classeId}`, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "id": id,
+            "build": reqParam
         }
     }).then(data =>{
         data.json().then(json =>{
             allSkills = json.classe;
+            mainSkills = json.mainSkill
         })
     })
 
@@ -96,7 +103,7 @@ const getSkills = () => {
 const mostrarClasse = () => {
 
     imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
-    imagem.src = `../assets/imgs/classes/${classes.value}sprite.png`
+    // imagem.src = `../assets/imgs/classes/${classes.value}sprite.png`
 
     for(var i = 0; i < allClasses.length; i++){
         if(allClasses[i].nome == classes.value){
@@ -156,8 +163,10 @@ const saveBuild = () =>{
         })
         }).then(data => {
             if(data.ok){
-                createdSuccessfully()
-                console.log(data)
+                data.json().then(json =>{
+                    console.log(json.build[0][0].id)
+                    createdSuccessfully(json.build[0][0].id)
+                })
                 console.log("Build criada com sucesso")
             }else{
                 console.log(data)
@@ -171,10 +180,9 @@ const saveBuild = () =>{
 const updateAtributos = () =>{
 
     var build = JSON.parse(sessionStorage.getItem("build"));
-
+    var idClasse = build[0].idClasse;
     var idAtributo = build[0].idAtributo;
     var idStatus = build[0].idStatus;
-    var idBuild = sessionStorage.getItem("idBuild");
     nomeDaBuild = nome.value;
 
     fetch("/build/update/atributos", {
@@ -200,16 +208,19 @@ const updateAtributos = () =>{
             pontosDeAtributos: pontosDeAtributos,
             idStatus: idStatus,
             idAtributo: idAtributo,
-            idBuild: idBuild,
+            idBuild: reqParam,
             nomeBuild: nomeDaBuild,
             idClasse: classeId
         })
         }).then(data => {
             if(data.ok){
                 data.json().then((data) => {
-                    updatedSuccessfully()
+                    updatedSuccessfully("Build Atualizada com Sucesso")
                     console.log(data)
                     console.log("Build atualizada")
+                    if(classeId != idClasse){
+                        deleteSkills();
+                    }
             })
             }else{
                 console.log(data)
@@ -237,7 +248,7 @@ setTimeout(() => {
         }
 
     }
-
+    classes.value = buildsUsuario[0] ? buildsUsuario[0].nomeClasse : "Aprendizes";
     pontos.innerHTML = buildsUsuario[0] ? buildsUsuario[0].pontos : 100;
     ataque.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataque : 1;
     ataquem.innerHTML = buildsUsuario[0] ? buildsUsuario[0].ataqueMagico : 1;
@@ -255,21 +266,26 @@ setTimeout(() => {
     resultado_sorte.value = buildsUsuario[0] ? sortePersonagem(buildsUsuario[0].Sorte) : 1;
     imagem_classe.src = buildsUsuario[0] ? `../assets/imgs/classes/${buildsUsuario[0].nomeClasse}sprite.png` : `../assets/imgs/classes/${classes.value}sprite.png`
     nomeDaBuild = buildsUsuario[0] ? nome.value = buildsUsuario[0].nomeBuild : ""
-    imagem.src = buildsUsuario[0] ? `../assets/imgs/classes/${buildsUsuario[0].nomeClasse}sprite.png` : `../assets/imgs/classes/${classes.value}sprite.png`
+    descricao.value = buildsUsuario[0] ? buildsUsuario[0].descricao : "";
+    // imagem.src = buildsUsuario[0] ? `../assets/imgs/classes/${buildsUsuario[0].nomeClasse}sprite.png` : `../assets/imgs/classes/${classes.value}sprite.png`
     build_button.innerHTML = buildsUsuario[0] ? `<button class="build_button" onclick="updateAtributos()">Atualizar Build</button>` : `<button class="build_button" onclick="saveBuild()">Criar Build</button>`
-    classeId = buildsUsuario[0] ? buildsUsuario[0].idClasse : 26;
-
+    classeId = buildsUsuario[0] ? buildsUsuario[0].idClasse : 1;
+    
     getSkills()
 
     setTimeout(() => {
         mostrarSkill()
+        for(var i = 0; i < mainSkills.length; i++){
+            skills.innerHTML += `<img src="../assets/imgs/Habilidades/${classes.value}/${mainSkills[i].nome}.png"/>`
+            habilidades.push([mainSkills[i].nome, mainSkills[i].idHabilidade])
+        }
     }, 500)
-}, 600)
+}, 1000)
 
 
 //Gráfico de atributos
 var atributoGrafico = document.getElementById("atributo");
-var atributoGrafico2 = document.getElementById("atributo2");
+// var atributoGrafico2 = document.getElementById("atributo2");
 
 var grafico = new Chart(atributoGrafico, {
         type: "radar",
@@ -283,17 +299,17 @@ var grafico = new Chart(atributoGrafico, {
     }
 })
 
-    var grafico2 = new Chart(atributoGrafico2, {
-        type: "radar",
-        data: {
-                labels: ['Força', 'Agilidade', 'Vitalidade', 'Inteligencia', 'Destreza', 'Sorte'],
-                datasets: [{
-                    label: 'Atributos do Personagem',
-                    data: [1, 1, 1, 1, 1, 1],
+    // var grafico2 = new Chart(atributoGrafico2, {
+    //     type: "radar",
+    //     data: {
+    //             labels: ['Força', 'Agilidade', 'Vitalidade', 'Inteligencia', 'Destreza', 'Sorte'],
+    //             datasets: [{
+    //                 label: 'Atributos do Personagem',
+    //                 data: [1, 1, 1, 1, 1, 1],
             
-                }]
-    }
-    })
+    //             }]
+    // }
+    // })
 
 // Atributos e Status
 
@@ -326,29 +342,35 @@ var ataqueMagicoPorSor = 0
 var esquivaPorSor = 0
 var criticoPorSor = 0
 var precisaoPorSor = 0
+var ataquePorNivel = 0
+var ataqueMagicoPorNivel = 0
+var esquivaPorNivel = 0
+var defesaPorNivel = 0
+var defesaMagicaPorNivel = 0
+var precisaoPorNivel = 0
 
 function totalDefesa() {
-    defesaPersonagem =  defesaPorAgilidade + defesaPorVit + 1
+    defesaPersonagem =  defesaPorAgilidade + defesaPorNivel + defesaPorVit + 1
 }
 
 function totalEsquiva() {
-    esquivaPersonagem = esquivaPorAgi + esquivaPorSor + 102
+    esquivaPersonagem = esquivaPorAgi + esquivaPorNivel + esquivaPorSor + 102
 }
 
 function totalAtaque() {
-    ataquePersonagem = ataquePorFor + ataquePorDes + ataquePorSor + 1
+    ataquePersonagem = ataquePorFor + ataquePorDes + ataquePorNivel + ataquePorSor + 1
 }
 
 function totalAtaqueMagico() {
-    ataqueMagicoPersonagem = ataqueMagicoPorInt + ataqueMagicoPorDes + ataqueMagicoPorSor + 1
+    ataqueMagicoPersonagem = ataqueMagicoPorInt + ataqueMagicoPorDes + ataqueMagicoPorNivel + ataqueMagicoPorSor + 1
 }
 
 function totalDefesaMagica() {
-    defesaMagicaPersonagem = defesaMagicaPorVit + defesaMagicaPorInt + 1
+    defesaMagicaPersonagem = defesaMagicaPorVit + defesaMagicaPorNivel + defesaMagicaPorInt + 1
 }
 
 function totalPrecisao() {
-    precisaoPersonagem = precisaoPorDes + precisaoPorSor + 177
+    precisaoPersonagem = precisaoPorDes + precisaoPorSor + precisaoPorNivel + 177
 }
 
 function totalCritico() {
@@ -356,6 +378,13 @@ function totalCritico() {
 }
 
 function analisarNivel() {
+
+    ataquePorNivel = 0;
+    ataqueMagicoPorNivel = 0;
+    defesaPorNivel = 0
+    defesaMagicaPorNivel = 0
+    esquivaPorNivel = 0;
+    precisaoPorNivel = 0;
 
     pontosDeAtributos = 100
     var nivelPersonagem = Number(nivel.value)
@@ -366,66 +395,133 @@ function analisarNivel() {
         nivel.value = 175
     }
 
-    for (var i = 1; i <= nivelPersonagem; i++) {
+    for (var i = 1; i <= nivel.value; i++) {
+
+        if(i % 2 != 0 && i > 1){
+            defesaPorNivel++
+        }
+        if(i % 4 == 0){
+            ataquePorNivel++
+            ataqueMagicoPorNivel++
+            defesaMagicaPorNivel++
+        }
 
         if (i > 1 && i <= 5) {
             pontosDeAtributos += 3
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 5 && i <= 10) {
             pontosDeAtributos += 4
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 10 && i <= 15) {
             pontosDeAtributos += 5
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 15 && i <= 20) {
             pontosDeAtributos += 6
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 20 && i <= 25) {
             pontosDeAtributos += 7
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 25 && i <= 30) {
             pontosDeAtributos += 8
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 30 && i <= 35) {
             pontosDeAtributos += 9
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 35 && i <= 40) {
             pontosDeAtributos += 10;
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 40 && i <= 45) {
             pontosDeAtributos += 11
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i >= 45 && i <= 50) {
             pontosDeAtributos += 12
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 50 && i <= 55) {
             pontosDeAtributos += 13
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 55 && i <= 60) {
             pontosDeAtributos += 14
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 60 && i <= 65) {
             pontosDeAtributos += 15
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 65 && i <= 70) {
             pontosDeAtributos += 16
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 70 && i <= 75) {
             pontosDeAtributos += 17
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 75 && i <= 80) {
             pontosDeAtributos += 18
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 80 && i <= 85) {
             pontosDeAtributos += 19
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 85 && i <= 90) {
             pontosDeAtributos += 20
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 90 && i <= 95) {
             pontosDeAtributos += 21
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 95 && i <= 100) {
             pontosDeAtributos += 22
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 100 && i <= 110) {
             pontosDeAtributos += 23
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 110 && i <= 120) {
             pontosDeAtributos += 24
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 120 && i <= 130) {
             pontosDeAtributos += 25
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 130 && i <= 140) {
             pontosDeAtributos += 26
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 140 && i <= 151) {
             pontosDeAtributos += 27
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 151 && i <= 158) {
             pontosDeAtributos += 28
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 158 && i <= 164) {
             pontosDeAtributos += 29
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 164 && i <= 171) {
             pontosDeAtributos += 30
+            precisaoPorNivel++
+            esquivaPorNivel++
         } else if (i > 171 && i <= 175) {
             pontosDeAtributos += 31
+            precisaoPorNivel++
+            esquivaPorNivel++
         }
         if (i == 175) {
             pontosDeAtributos += 2
@@ -439,6 +535,13 @@ function analisarNivel() {
     pontosDeAtributos -= pontosGastosEmInteligencia
     pontosDeAtributos -= pontosGastosEmDestreza
     pontosDeAtributos -= pontosGastosEmSorte
+
+    totalAtaque()
+    totalAtaqueMagico()
+    totalDefesa()
+    totalDefesaMagica()
+    totalEsquiva()
+    totalPrecisao()
     
     if (pontosDeAtributos < 0) {
         pontos.style.color = "red"
@@ -448,6 +551,12 @@ function analisarNivel() {
         pontos.innerHTML = pontosDeAtributos;
     }
 
+    ataque.innerHTML = ataquePersonagem
+    ataquem.innerHTML = ataqueMagicoPersonagem
+    defesa.innerHTML = defesaPersonagem
+    defesam.innerHTML = defesaMagicaPersonagem
+    esquiva.innerHTML = esquivaPersonagem
+    precisao.innerHTML = precisaoPersonagem
 }
 
 function forcaPersonagem(forca) {
@@ -544,8 +653,8 @@ function forcaPersonagem(forca) {
     totalAtaque();
     grafico.data.datasets[0].data[0] = forca
     grafico.update();
-    grafico2.data.datasets[0].data[0] = forca
-    grafico2.update();
+    // grafico2.data.datasets[0].data[0] = forca
+    // grafico2.update();
     ataque.innerHTML = ataquePersonagem
     resultado_forca.value = forca
     return forca
@@ -652,8 +761,8 @@ function agilidadePersonagem(agilidade) {
 
     grafico.data.datasets[0].data[1] = agilidade
     grafico.update();
-    grafico2.data.datasets[0].data[1] = agilidade
-    grafico2.update();
+    // grafico2.data.datasets[0].data[1] = agilidade
+    // grafico2.update();
 
     esquiva.innerHTML = esquivaPersonagem
     defesa.innerHTML = defesaPersonagem
@@ -751,8 +860,8 @@ function vitalidadePersonagem(vitalidade) {
 
     grafico.data.datasets[0].data[2] = vitalidade
     grafico.update();
-    grafico2.data.datasets[0].data[2] = vitalidade
-    grafico2.update();
+    // grafico2.data.datasets[0].data[2] = vitalidade
+    // grafico2.update();
 
     defesa.innerHTML = defesaPersonagem
     defesam.innerHTML = defesaMagicaPersonagem
@@ -863,8 +972,8 @@ function inteligenciaPersonagem(inteligencia) {
 
     grafico.data.datasets[0].data[3] = inteligencia
     grafico.update();
-    grafico2.data.datasets[0].data[3] = inteligencia
-    grafico2.update();
+    // grafico2.data.datasets[0].data[3] = inteligencia
+    // grafico2.update();
 
     ataquem.innerHTML = ataqueMagicoPersonagem
     defesam.innerHTML = defesaMagicaPersonagem
@@ -975,8 +1084,8 @@ function destrezaPersonagem(destreza) {
 
     grafico.data.datasets[0].data[4] = destreza
     grafico.update();
-    grafico2.data.datasets[0].data[4] = destreza
-    grafico2.update();
+    // grafico2.data.datasets[0].data[4] = destreza
+    // grafico2.update();
 
     ataquem.innerHTML = ataqueMagicoPersonagem
     precisao.innerHTML = precisaoPersonagem
@@ -1086,8 +1195,8 @@ function sortePersonagem(luk) {
 
     grafico.data.datasets[0].data[5] = luk
     grafico.update();
-    grafico2.data.datasets[0].data[4] = luk
-    grafico2.update();
+    // grafico2.data.datasets[0].data[4] = luk
+    // grafico2.update();
 
     ataque.innerHTML = ataquePersonagem
     ataquem.innerHTML = ataqueMagicoPersonagem

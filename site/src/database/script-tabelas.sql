@@ -75,6 +75,7 @@ CREATE TABLE status_build(
 CREATE TABLE build(
 	idBuild int auto_increment,
     nome varchar(45),
+    descricao TEXT,
     fkUsuario int,
     fkClasse int,
     fkAtributo int,
@@ -94,7 +95,7 @@ CREATE TABLE habilidades_principais(
     fkUsuario int,
     fkHabilidade int,
     primary key(fkBuild, fkClasse, fkStatus, fkAtributos, fkUsuario, fkHabilidade),
-    CONSTRAINT fkBuildHabilidade FOREIGN KEY (fkBuild) REFERENCES build(idBuild),
+    CONSTRAINT fkBuildHabilidade FOREIGN KEY (fkBuild) REFERENCES build(idBuild) ON DELETE CASCADE,
     CONSTRAINT fkClasseHabilidadeBuild FOREIGN KEY (fkClasse) REFERENCES classe(idClasse),
     CONSTRAINT fkStatusHabilidade FOREIGN KEY (fkStatus) REFERENCES status_build(idStatus),
     CONSTRAINT fkAtributoHabilidade FOREIGN KEY (fkAtributos) REFERENCES atributos_build(idAtributo),

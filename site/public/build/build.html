@@ -13,8 +13,10 @@
     <div class="header">
         <h1>Ragnawiki</h1>
         <div class="navbar">
+            <a id="suas_builds" href="/builds">Suas Builds</a>
             <a id="simulador" onclick="mostrarSimulador()">Simulador de Atributos</a>
             <a id="habilidade" onclick="mostrarSkills()">Habilidades</a>
+            <a onclick="deslogar()" id="logout">Deslogar</a>
         </div>
     </div>
     <div id="simulador_build">
@@ -101,7 +103,7 @@
         </div>
     </div>
     <div id="habilidade_build">
-        <div class="container" style="flex-direction: column;">
+        <!-- <div class="container">
             <div class="habilidade">
                 <div class="grafico2">
                     <canvas id="atributo2"></canvas>
@@ -110,17 +112,28 @@
                     <img id="imagem">
                 </div>
             </div>
+        </div> -->
+        <div class="container">
             <div class="skill_seletor">
                 <h2>Habilidades Principais:</h2>
+                <div class="skill_buttons">
+                    <button class="container_button" onclick="adicionarHabilidade()">Adicionar Habilidade</button>
+                    <button class="container_button" onclick="removerHabilidades()">Remover Habilidade</button>
+                </div>
                 <select id="skills_principais"></select>
+                <div id="skills"></div>
+                <button class="container_button save" onclick="salvarHabilidades()">Salvar Habilidades</button>
             </div>
-            <div class="skill_buttons">
-                <button onclick="adicionarHabilidade()">Adicionar Habilidade</button>
-                <button onclick="removerHabilidades()">Remover Habilidade</button>
+        </div>
+        <div class="container" style="align-items: center; justify-content: center; height: auto;">
+            <div class="descricao_build">
+                <h3>Propósito da Build:</h3>
+                <textarea id="descricao"></textarea>
+                <button class="container_button" onclick="salvarDescricao()">Salvar Descrição</button>
             </div>
-            <div id="skills"></div>
         </div>
     </div>
+</div>
 
 </body>
 <script src="../js/sessao.js"></script>
@@ -128,5 +141,4 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../js/build.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </html>

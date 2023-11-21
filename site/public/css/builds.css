@@ -25,7 +25,7 @@ body{
     margin: 8% 0 0 0;
     padding: 0 0 6% 25%; 
     color: #00259C;
-    border-bottom: #171A29 2px solid;
+    border-bottom: #171A29 1px solid;
     width: 100%;
 }
 
@@ -35,15 +35,21 @@ body{
     height: 100%;
     justify-content: center;
     align-items: center;
-
+    width: 100%;    
 }
 
 .header .navbar a{
+    /* background-color: #00259C; */
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    padding-top: 5%;
     font-size: 20px;
-    padding-top: 10%;
     text-decoration: none;
-    color: #00259C;
-    margin-bottom: 100%;
+    background-color: #00259C;
+    color: white;
+    margin-bottom: 20%;
+    cursor: pointer;
 }
 
 .container{
@@ -51,21 +57,21 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     background-color: white;
-    margin: 4% 0 5% 35%;
-    width: 60%;
+    margin: 4% 0 5% 30%;
+    width: 65%;
     border-radius: 15px;
 }
 
 .container .container_button{
     padding: 2% 2%;
-    background-color: #0E1019;
+    background-color: #00259C;
     border-radius: 15px;
     cursor: pointer;
+    font-size: 16px;
+    color: white;
 }
 .container .container_button a{
     text-decoration: none;
-    font-size: 16px;
-    color: #e4e4e4;
 }
 
 #builds{
@@ -89,7 +95,6 @@ body{
     border: rgba(0, 0, 0, 0.274) 1px solid;
     padding: 1% 0 0 2.2%;
     border-radius: 15px;
-    cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.37) 5px 5px 5px;
     margin-bottom: 4%;
 }
@@ -99,6 +104,43 @@ body{
     font-weight: 600;
     font-size: 22px;
     text-align: center;
+}
+
+.icons{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+.icons span{
+    margin-right: 5%;
+}
+
+.delete{
+    color: red;
+    border: 1px solid rgba(0, 0, 0, 0.199);
+    border-radius: 5px;
+    padding: 1.5%;
+    cursor: pointer;
+}
+
+.edit{
+    color: green;
+    border: 1px solid rgba(0, 0, 0, 0.199);
+    border-radius: 5px;
+    padding: 1.5%;
+    cursor: pointer;
+}
+
+#all_informations{
+    display: none;
+    width: 100%;
+}
+
+#all_builds{
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .pagination-container {

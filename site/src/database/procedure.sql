@@ -14,7 +14,7 @@ START TRANSACTION;
 	INSERT INTO build(nome, fkUsuario, fkClasse, fkAtributo, fkStatus) VALUES (nomeUsuario, idUsuario, idClasse, @idAtributo, @idStatus);
     IF erro_sql = false THEN
 		COMMIT;
-        SELECT 'Transação efetivada com sucesso' as Resultado;
+        SELECT max(idBuild) as 'id' FROM build;
 	ELSE 
 		ROLLBACK;
         SELECT 'Erro na transação' AS Resultado;
@@ -73,6 +73,7 @@ UPDATE status_build set ataque = 1, ataqueMagico = 1, defesa = 1, defesaMagica =
     critico = 1, nivel = 1, pontos = 1 WHERE idStatus = 3;
 UPDATE atributos_build set Forca = 2, Agilidade = 3, Vitalidade = 4, Inteligencia = 5, 
 	Destreza = 6, Sorte = 7 WHERE idAtributo = 2;
-    
+SELECT * FROM habilidades_principais WHERE fkBuild = 20;
+
 SELECT c.idClasse, c.nome as 'nomeClasse', ab.*, sb.*, b.nome as 'nomeBuild' FROM build as b JOIN atributos_build as ab ON b.fkAtributo = ab.idAtributo JOIN status_build as sb ON b.fkStatus = sb.idStatus 
     JOIN classe as c ON b.fkClasse = c.idClasse JOIN usuario as u ON u.id = b.fkUsuario WHERE b.idBuild = 9 AND u.id = 2	;

@@ -1,4 +1,5 @@
 var buildModel = require("../models/buildModel");
+var classeModel = require("../models/classeModel")
 
 const saveBuild = (req, res) => {
 
@@ -92,9 +93,88 @@ const getBuild = (req, res) =>{
 
 }
 
+const saveBuildSkills = (req, res) =>{
+
+    var idAtributo = req.body.idAtributo;
+    var idStatus = req.body.idStatus;
+    var idClasse = req.body.idClasse;
+    var idUsuario = req.body.idUsuario;
+    var idBuild = req.body.idBuild;
+    var idHabilidade = req.body.idHabilidade;
+
+    buildModel.saveBuildSkills(idBuild, idClasse, idStatus, idAtributo, idUsuario, idHabilidade).then((data) =>{
+            if(data.length > 0){
+                res.status(201).send("Habilidades salvas com sucesso")
+            }
+        }
+    )
+
+}
+
+const getBuildSkills = (req, res) =>{
+
+    var classeId = req.params.classeId;
+    var idUsuario = req.headers.id;
+    var idBuild = req.headers.build
+
+    console.log(req.headers)
+
+    classeModel.getAllSkills(classeId).then((resultado) =>{
+        if(resultado.length > 0){
+            buildModel.getBuildSkills(idUsuario, idBuild).then((data) => {
+                res.json({classe: resultado, mainSkill: data})
+            })
+        }else if(data.length == 0){
+            res.status(404).send("Classe não encontrada na base de dados");
+        }
+    })
+
+}
+
+const updateDescription = (req, res) => {
+
+    var idBuild = req.body.idBuild;
+    var description = req.body.description;
+
+    buildModel.updateDescription(idBuild, description).then(() => {
+            res.status(200).send({"Resultado":"Descrição atualizada com sucesso"});
+    })
+
+}
+
+const deleteSkills = (req, res) => {
+
+    var idBuild = req.params.idBuild
+
+    buildModel.deleteAllSkills(idBuild).then(data => {
+        if(data.length > 0){
+            res.status(200).send("Habilidades deletadas com sucesso")
+        }
+    });
+
+}
+
+
+const deleteBuild = (req, res) => {
+
+    var idBuild = req.params.idBuild
+
+    buildModel.deleteBuild(idBuild).then(data => {
+        if(data.length > 0){
+            res.status(200).send("Build deletada com sucesso")
+        }
+    });
+
+}
+
 module.exports = {
     saveBuild,
     getBuilds,
     getBuild,
-    updateBuildAtributos
+    updateBuildAtributos,
+    saveBuildSkills,
+    getBuildSkills,
+    updateDescription,
+    deleteSkills,
+    deleteBuild
 }
