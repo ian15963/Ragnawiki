@@ -1,5 +1,5 @@
 CREATE DATABASE ragnawiki;
-
+-- DROP DATABASE ragnawiki;
 use ragnawiki;
 
 CREATE TABLE usuario(

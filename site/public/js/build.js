@@ -6,6 +6,8 @@ var mainSkills = []
 const pathArray = window.location.pathname.split("/");
 const reqParam = pathArray[pathArray.length -1];
 
+
+
 const createdSuccessfully = (id) =>{
     Swal.fire({
         title: "Build Criada Com Sucesso",
@@ -310,8 +312,23 @@ var grafico = new Chart(atributoGrafico, {
     //             }]
     // }
     // })
+//botões
+var navbarElements = document.querySelectorAll(".navbar_element");
+navbarElements.forEach(x => {
+    x.addEventListener("mousedown", () => {
+      x.style.transform = `scale(0.9)`
+      x.style.transition = `transform 0.5s`
+    })
+  })
+  navbarElements.forEach(x => {
+    x.addEventListener("mouseout", () => {
+      x.style.transform = `none`
+    })
+  })
 
-// Atributos e Status
+
+  // Atributos e Status
+
 
 var ataquePersonagem = 0
 var ataqueMagicoPersonagem = 0

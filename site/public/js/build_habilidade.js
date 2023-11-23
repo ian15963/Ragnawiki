@@ -1,7 +1,5 @@
 const mostrarSimulador = () =>{
     simulador_build.style.display = `block`
-    simulador.style.backgroundColor = `#001b72`
-    habilidade.style.backgroundColor = `#00249ce1`
     habilidade_build.style.display = `none`
 
     if(reqParam == 'newBuild'){
@@ -12,8 +10,6 @@ const mostrarSimulador = () =>{
 const mostrarSkills = () =>{
 
     simulador_build.style.display = `none`
-    habilidade.style.backgroundColor = `#001b72`
-    simulador.style.backgroundColor = `#00249ce1`
     habilidade_build.style.display = `block`
 }
 
@@ -40,18 +36,18 @@ const erroAoAcessar = (texto) => {
 }
 
 const showSkill = (valorImg) => {
-
+    
     var nomeSkill = valorImg.getAttribute("value");
-
+    console.log(valorImg, nomeSkill)
     Swal.fire({
-        title: texto,
+        title: `${nomeSkill.replaceAll("_", " ")}`,
         width: 600,
         height: 250,
         padding: "3em",
         color: "#3349ED",
         background: "#fff",
-        imageUrl: `../assets/gif/${nomeSkill}`,
-        imageWidth: 150,
+        imageUrl: `../assets/imgs/gif/${nomeSkill}.gif`,
+        imageWidth: 400,
       });
 }
 

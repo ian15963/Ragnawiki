@@ -3,7 +3,19 @@ var metricas = []
 var famousClasses = []
 var famousHability = []
 var allClasses = []
+var navbarElements = document.querySelectorAll(".navbar_element");
 
+navbarElements.forEach(x => {
+  x.addEventListener("mousedown", () => {
+    x.style.transform = `scale(0.9)`
+    x.style.transition = `transform 0.5s`
+  })
+})
+navbarElements.forEach(x => {
+  x.addEventListener("mouseout", () => {
+    x.style.transform = `none`
+  })
+})
 const getAllBuilds = () =>{
 
     var idUsuario = sessionStorage.getItem("id");
