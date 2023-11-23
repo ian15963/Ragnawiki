@@ -26,27 +26,16 @@
         </div>
     </div>
     <div class="content"></div>
+    <div class="trailer">
+            <h2>Monte sua Build</h2>
+            <div>
+                <video autoplay muted loop onclick="telarParaBuild()" style="cursor: pointer;">
+                    <source src="assets/Ragnarok Online GGH Official Trailer.mp4" type="video/mp4">
+                </video>
+            </div>
+            <!-- <div class="builds"></div>     -->
+        </div>
     
-    <div class="slider">
-
-        <div class="slide">
-            <p>Episódios</p>
-          <img src="assets/imgs/encontro-com-o-desconhecido.jpg" alt=""/>
-        </div>
-  
-        <div class="slide">
-          <p>Classes</p>
-          <img src="assets/imgs/Classe.png" alt="" />
-        </div>
-  
-        <div class="slide">
-            <p>Equipamentos</p>
-          <img src="assets/imgs/Carrossel2.png" alt="" />
-        </div>
-
-        <button class="btn btn-next">></button>
-        <button class="btn btn-prev"><</button>
-    </div>
 
     <div class="historia">
         <h2>História do Jogo</h2>
@@ -67,7 +56,11 @@
             A ressurreição de Surtr criou uma enorme Fenda Dimensional, ligando Midgard a Ash Vacuum.
             
             Agora, o Ragnarök parece estar prestes a acontecer, mas diferente da profecia, o destino final dos Deuses dependerá de você!</p>
-        <h2>Criação do Jogo</h2>
+            
+           
+        
+
+            <h2>Criação do Jogo</h2>
         <p>Ragnarok Online é um MMORPG desenvolvido pela empresa sul-coreana Gravity Corp. Os cenários do jogo foram baseados, inicialmente, no manhwa Ragnarok de Lee Myung-Jin, lançado no ano de 2002, fez muito sucesso no Brasil após o lançamento no país no ano de 2004. 
  
 
@@ -75,6 +68,9 @@
     </div>
         
 </body>
-<script src="js/carrossel.js"></script>
-
+<script>
+    const telarParaBuild = () =>{
+        window.location = "/builds"
+    }
+</script>
 </html>

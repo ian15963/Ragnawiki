@@ -117,8 +117,6 @@ const getBuildSkills = (req, res) =>{
     var idUsuario = req.headers.id;
     var idBuild = req.headers.build
 
-    console.log(req.headers)
-
     classeModel.getAllSkills(classeId).then((resultado) =>{
         if(resultado.length > 0){
             buildModel.getBuildSkills(idUsuario, idBuild).then((data) => {
@@ -167,6 +165,34 @@ const deleteBuild = (req, res) => {
 
 }
 
+const getMetricas = (req, res) => {
+
+    var idClasse = req.params.idClasse;
+
+    buildModel.getMetricas().then(data => {
+        if(data.length > 0){
+            console.log(data)
+            buildModel.getFamousClasses().then(resultado => {
+                if(resultado.length > 0){
+                    
+                    console.log(resultado)
+                    res.json({metricas: data, famousClass: resultado});
+
+                    // buildModel.getFamousHabilitiesPerClass(idClasse).then(resultado2 => {
+                    //     if(resultado2.length > 0){
+                    //         console.log(resultado2)
+                    //         res.json({metricas: data, famousClass: resultado, famousHability: resultado2});
+                    //     }else{
+                    //         res.json({metricas: data, famousClass: resultado, "Não encontrado": "Não foi possível encontrar skills dessa classe"});
+                    //     }
+                    // })
+                }
+            })
+        }
+    })
+
+}
+
 module.exports = {
     saveBuild,
     getBuilds,
@@ -176,5 +202,6 @@ module.exports = {
     getBuildSkills,
     updateDescription,
     deleteSkills,
-    deleteBuild
+    deleteBuild,
+    getMetricas
 }

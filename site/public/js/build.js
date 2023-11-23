@@ -32,7 +32,7 @@ const updatedSuccessfully = (texto) =>{
         imageUrl: "../assets/kafra.gif",
         imageWidth: 150,
       }).then(() => {
-          window.location = `/build/${reqParam}`
+          window.location = `/build/${reqParam}`    
       }
       );
 }

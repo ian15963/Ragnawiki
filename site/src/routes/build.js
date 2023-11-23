@@ -10,6 +10,10 @@ router.post("/skills", (req, res) =>{
     buildController.saveBuildSkills(req,res);
 })
 
+router.get("/get/metricas/:idClasse", (req, res) => {
+    buildController.getMetricas(req, res)
+})
+
 router.put("/update/atributos", (req, res) => {
     buildController.updateBuildAtributos(req,res);
 })

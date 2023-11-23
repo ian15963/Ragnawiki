@@ -22,7 +22,7 @@ START TRANSACTION;
 END// 
 DELIMITER ;
 DROP PROCEDURE inserirDados;
-call inserirDados("Ian",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
+call inserirDados("Ian",1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5);
 SELECT * FROM atributos_build;
 SELECT * FROM status_build;
 set @idAtributo = (Select max(idAtributo) FROM atributos_build);
@@ -73,7 +73,5 @@ UPDATE status_build set ataque = 1, ataqueMagico = 1, defesa = 1, defesaMagica =
     critico = 1, nivel = 1, pontos = 1 WHERE idStatus = 3;
 UPDATE atributos_build set Forca = 2, Agilidade = 3, Vitalidade = 4, Inteligencia = 5, 
 	Destreza = 6, Sorte = 7 WHERE idAtributo = 2;
-SELECT * FROM habilidades_principais WHERE fkBuild = 20;
-
 SELECT c.idClasse, c.nome as 'nomeClasse', ab.*, sb.*, b.nome as 'nomeBuild' FROM build as b JOIN atributos_build as ab ON b.fkAtributo = ab.idAtributo JOIN status_build as sb ON b.fkStatus = sb.idStatus 
     JOIN classe as c ON b.fkClasse = c.idClasse JOIN usuario as u ON u.id = b.fkUsuario WHERE b.idBuild = 9 AND u.id = 2	;

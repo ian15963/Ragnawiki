@@ -92,6 +92,33 @@ const deleteBuild = (idBuild) => {
 
 }
 
+const getMetricas = () => {
+
+    var instrucao = `call metricas_build();`;
+
+    return database.executar(instrucao);
+
+}
+
+const getFamousClasses = () =>{
+
+    var instrucao = `SELECT c.nome, count(build.fkClasse) as totalClasse FROM build JOIN classe as c ON build.fkClasse = c.idClasse GROUP BY build.fkClasse 
+    ORDER BY count(build.fkClasse) DESC LIMIT 5;`
+
+    console.log(instrucao)
+
+    return database.executar(instrucao);
+}
+
+const getFamousHabilitiesPerClass = (idClasse) => {
+
+    var instrucao = `SELECT h.nome FROM habilidades_principais as ph JOIN habilidade as h ON h.idHabilidade = ph.fkHabilidade WHERE ph.fkClasse = ${idClasse} limit 3;
+    `;
+
+    console.log(instrucao);
+
+    database.executar(instrucao)
+}
 
 
 module.exports = {
@@ -104,5 +131,8 @@ module.exports = {
     getBuildSkills,
     updateDescription,
     deleteAllSkills,
-    deleteBuild
+    deleteBuild,
+    getMetricas,
+    getFamousClasses,
+    getFamousHabilitiesPerClass
 }

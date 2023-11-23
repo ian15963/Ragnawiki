@@ -39,7 +39,21 @@ const erroAoAcessar = (texto) => {
       });
 }
 
+const showSkill = (valorImg) => {
 
+    var nomeSkill = valorImg.getAttribute("value");
+
+    Swal.fire({
+        title: texto,
+        width: 600,
+        height: 250,
+        padding: "3em",
+        color: "#3349ED",
+        background: "#fff",
+        imageUrl: `../assets/gif/${nomeSkill}`,
+        imageWidth: 150,
+      });
+}
 
 var habilidades = []
 
@@ -57,7 +71,9 @@ const adicionarHabilidade = () => {
     }
     
     habilidades.push([nomeHabilidade, idHabilidade])
-    skills.innerHTML += `<img src="../assets/imgs/Habilidades/${classes.value}/${nomeHabilidade}.png"/>`
+    skills.innerHTML += `
+    <img onclick="showSkill(this)" value="${nomeHabilidade}" src="../assets/imgs/Habilidades/${classes.value}/${nomeHabilidade}.png"/>
+    `
 
 }
 

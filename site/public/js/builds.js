@@ -1,4 +1,8 @@
 var buildsUsuario = []
+var metricas = []
+var famousClasses = []
+var famousHability = []
+var allClasses = []
 
 const getAllBuilds = () =>{
 
@@ -19,6 +23,63 @@ const getAllBuilds = () =>{
 
 }
 
+const getClasses = () => {
+
+  fetch("/classe/all-classes", {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json"
+      }
+  }).then((data) => {
+      data.json().then(json => {
+          allClasses = json.nome
+      })
+      console.log(data)
+  })
+  console.log(allClasses)
+
+
+}
+
+const mostrarClasse = () => {
+
+  imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
+  // imagem.src = `../assets/imgs/classes/${classes.value}sprite.png`
+
+  for(var i = 0; i < allClasses.length; i++){
+      if(allClasses[i].nome == classes.value){
+          classeId = allClasses[i].idClasse;
+          getSkills()
+          break
+      }
+  }
+
+  skills_principais.innerHTML = ""
+
+}
+
+const getMetricas = () => {
+
+    fetch(`/build/get/metricas/${classeId}`,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(data => {
+      if(data.ok){
+        data.json().then(json => {
+          console.log(json.famousClass[0])
+          metricas = json.metricas[0][0]
+          famousClasses = json.famousClass
+          // famousHability = json.famousHability
+        })
+      }
+    })
+
+}
+
+var classeId = 25;
+
 setTimeout(()=>{
 
     for(var i = 0; i < buildsUsuario.length; i++){
@@ -32,7 +93,24 @@ setTimeout(()=>{
         </div>`
     }
     usePagination()
-  
+
+    allClasses.sort((x, y) => {
+      let a = x.nome.toUpperCase();
+      let b = y.nome.toUpperCase();
+
+      return a == b ? 0 : a > b ? 1 : -1
+  })
+
+    for (var i = 0; i < allClasses.length; i++) {
+        
+      classes.innerHTML += `<option value="${allClasses[i].nome}">${allClasses[i].nome.replaceAll("_", " ")}</option>`
+
+      if(allClasses[i].nome){
+          imagem_classe.src = `../assets/imgs/classes/${classes.value}sprite.png`
+      }
+
+  }
+
 },700)
 
 const newBuild = () =>{
@@ -75,6 +153,7 @@ const deleteSuccessfully = (idBuild) =>{
         })
         Swal.fire("Build deletada com sucesso", "", "success").then(() => {
           window.location = "/builds"
+
         }
         )
       }
@@ -95,7 +174,78 @@ const visaoGeral = () =>{
     all_builds.style.display = `none`
     all_informations.style.display = `block`
 
+    var metricasDosAtributos = document.getElementById("metricas_atributos")
+    var metricasClasse = document.getElementById("metricas_classes");
+
+    var graficoMetricas = new Chart(metricasDosAtributos, {
+      type: "bar",
+      data: {
+              labels: ['Força', 'Agilidade', 'Vitalidade', 'Inteligencia', 'Destreza', 'Sorte'],
+              datasets: [{
+                  label: 'Quantidade de classes com foco em um atributo',
+                  data: [1,1,1,1,1,1],
+                  backgroundColor: "#3349ED"
+              }]
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Atributos mais utilizados por build',
+            color: "black",
+            font: {
+              size: 16
+            }
+          }
+        }
+      }
+    })
+
+    var graficoClasses = new Chart(metricasClasse, {
+        type: "bar",
+        data: {
+          labels: [],
+          datasets: [{
+            label: "Classes mais populares",
+            data: [],
+            backgroundColor: "#3349ED"
+          }]
+        },
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Classes mais utilizadas',
+              color: "black",
+              font: {
+                size: 16
+              }
+            }
+          }
+        }
+    })
+
+      for(var i = 0; i < famousClasses.length; i++){
+
+        graficoClasses.data.labels.push(famousClasses[i].nome.replaceAll("_", " "))
+        graficoClasses.data.datasets[0].data.push(famousClasses[i].totalClasse);
+        graficoClasses.update();
+
+        
+      }
+
+      graficoMetricas.data.datasets[0].data[0] = metricas.totalForca
+      graficoMetricas.data.datasets[0].data[1] = metricas.totalAgilidade
+      graficoMetricas.data.datasets[0].data[2] = metricas.totalVitalidade
+      graficoMetricas.data.datasets[0].data[3] = metricas.totalInteligencia
+      graficoMetricas.data.datasets[0].data[4] = metricas.totalDestreza
+      graficoMetricas.data.datasets[0].data[5] = metricas.totalSorte
+      graficoMetricas.update()  
+      // main.innerHTML += ``
+
 }
+
+
 
 
 const usePagination = () =>{

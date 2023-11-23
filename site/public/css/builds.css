@@ -137,10 +137,20 @@ body{
     width: 100%;
 }
 
+.build{
+    height: auto;
+}
+
+.build p{
+    text-align: center;
+
+}
+
 #all_builds{
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 15px;
 }
 
 .pagination-container {
@@ -176,3 +186,24 @@ body{
   .hidden{
     display: none;
   }
+
+#main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2%;
+}
+
+.grafico{
+    width: 62%;    
+    margin-bottom: 4%;
+}
+
+.container h2{
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 2%;
+    font-size: 32px;
+}
