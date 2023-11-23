@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprendiz</title>
     <link rel="stylesheet" href="../../css/classe.css">
 </head>
+
 <body onload="getSkills(), getAllInformation()">
 
     <div class="header">
@@ -21,17 +23,17 @@
         <div class="classe">
             <h2 id="titulo"></h2>
             <div class="descricao" id="descricao">
-                
+
             </div>
         </div>
-        <div class="sprite">
+        <div id="sprite_column">
             <div class="title" style="display: flex;" id="sprite_title"></div>
             <img id="arte" alt="arte classe">
             <div class="title" style="padding: 2% 0 2% 25%;">
                 <h4>Sprite</h4>
             </div>
             <img id="sprite" alt="Sprite-classe">
-            <table id="sprite-table">
+            <table id="sprite_table">
                 <tbody>
                     <tr id="tipo_classe"></tr>
                     <tr id="classe_anterior"></tr>
@@ -58,7 +60,8 @@
             </table>
         </div>
     </div>
-    
+
 </body>
 <script src="../../js/classe.js"></script>
+
 </html>

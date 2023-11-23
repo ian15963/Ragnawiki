@@ -1,4 +1,4 @@
-CREATE DATABASE ragnawiki;
+CREATE DATABASE ragnawiki; 
 -- DROP DATABASE ragnawiki;
 use ragnawiki;
 

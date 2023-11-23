@@ -1,7 +1,7 @@
 var skills = []
 var classInformation = []
 const pathArray = window.location.pathname.split("/");
-const reqParam = pathArray[pathArray.length -1];
+const reqParam = pathArray[pathArray.length - 1];
 
 const getSkills = () => {
 
@@ -12,7 +12,7 @@ const getSkills = () => {
         }
     }).then(data => {
         console.log(data.status)
-        if(data.status == 404){
+        if (data.status == 404) {
             window.location = `/classes`;
         }
         data.json().then(json => {
@@ -24,7 +24,7 @@ const getSkills = () => {
     console.log(skills)
 }
 
-const getAllInformation = () =>{
+const getAllInformation = () => {
 
     fetch(`/classe/information/${reqParam}`, {
         method: "GET",
@@ -42,76 +42,76 @@ const getAllInformation = () =>{
 }
 
 setTimeout(() => {
-
+    sprite_column.style.display = `block`;
     arte.style.maxWidth = `300px`;
-    
+
     var totalSkills = skills.length
     var total = 0
     var i = 1;
-    console.log(2*skills.length/3)
-        
-        titulo.innerHTML += `${classInformation[0].nomeClasse.replaceAll("_", " ")}`;
-        descricao.innerHTML += `<p>${classInformation[0].descricao}</p>
+    console.log(2 * skills.length / 3)
+
+    titulo.innerHTML += `${classInformation[0].nomeClasse.replaceAll("_", " ")}`;
+    descricao.innerHTML += `<p>${classInformation[0].descricao}</p>
             <h3>Habilidades</h3>
             <div class="habilidades" id="habilidades"></div>
-            ${!(classInformation[0].nomeClasse == 'Aprendizes') ?  `<div class="arvore">
+            ${!(classInformation[0].nomeClasse == 'Aprendizes') ? `<div class="arvore">
                 <h3>Árvore de Habilidades</h3>
                 <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/Skilltree${classInformation[0].nomeClasse}.png" alt="">
             </div>`: ''}`
-        sprite_title.innerHTML += `
+    sprite_title.innerHTML += `
         <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${classInformation[0].nomeClasse}partyicn.png" alt="">
             <h3>${classInformation[0].nomeClasse}</h3>`
-        sprite.src = `../../assets/imgs/classes/${classInformation[0].nomeClasse}sprite.png`;
-        arte.src = `../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/Arte_${classInformation[0].nomeClasse}.png`;
-        classe_anterior.innerHTML =  classInformation[0].classeAnterior == null ? `` : `<td>Anterior</td>
+    sprite.src = `../../assets/imgs/classes/${classInformation[0].nomeClasse}sprite.png`;
+    arte.src = `../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/Arte_${classInformation[0].nomeClasse}.png`;
+    classe_anterior.innerHTML = classInformation[0].classeAnterior == null ? `` : `<td>Anterior</td>
                                     <td>${classInformation[0].classeAnterior.replaceAll("_", " ")}</td>`
-        tipo_classe.innerHTML = `<td>Tipo</td>
+    tipo_classe.innerHTML = `<td>Tipo</td>
                                 <td>${classInformation[0].tipo}<td>`
-        bonus_classe.innerHTML += `<td>+${classInformation[0].Forca}</td><td>+${classInformation[0].Agilidade}</td><td>+${classInformation[0].Vitalidade}</td>
+    bonus_classe.innerHTML += `<td>+${classInformation[0].Forca}</td><td>+${classInformation[0].Agilidade}</td><td>+${classInformation[0].Vitalidade}</td>
         <td>+${classInformation[0].Inteligencia}</td><td>+${classInformation[0].Destreza}</td><td>+${classInformation[0].Sorte}</td>`
 
 
-        if(total == 0){
-            habilidades.innerHTML += `
+    if (total == 0) {
+        habilidades.innerHTML += `
             <div class="grupo" id="grupo${i}"></div>`
-            for(var u = 0; u < totalSkills/3; u++){
-                eval("grupo" + (i)).innerHTML += `
+        for (var u = 0; u < totalSkills / 3; u++) {
+            eval("grupo" + (i)).innerHTML += `
                 <div class="habilidade">
                         <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
-                        <span>${skills[total].nomeSkill.replaceAll("_"," ")}</span>
+                        <span>${skills[total].nomeSkill.replaceAll("_", " ")}</span>
                     </div>
                 `;
-                total++
-                console.log(total)
-            }
-            i++
+            total++
+            console.log(total)
         }
-        if(total >= totalSkills/3){
-            habilidades.innerHTML += `
+        i++
+    }
+    if (total >= totalSkills / 3) {
+        habilidades.innerHTML += `
             <div class="grupo" id="grupo${i}"></div>`
-            for(var u = 0; u < totalSkills/3; u++){
-                eval("grupo" + (i)).innerHTML += `
+        for (var u = 0; u < totalSkills / 3; u++) {
+            eval("grupo" + (i)).innerHTML += `
                 <div class="habilidade">
                         <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
-                        <span>${skills[total].nomeSkill.replaceAll("_"," ")}</span>
+                        <span>${skills[total].nomeSkill.replaceAll("_", " ")}</span>
                     </div>
                 `;
-                total++
-            }
-            i++
+            total++
         }
-        if(total >= 2*totalSkills/3){
-            habilidades.innerHTML += `
+        i++
+    }
+    if (total >= 2 * totalSkills / 3) {
+        habilidades.innerHTML += `
             <div class="grupo" id="grupo${i}"></div>`
-            for(var u = 0; u < totalSkills/3; u++){
-                eval("grupo" + (i)).innerHTML += `
+        for (var u = 0; u < totalSkills / 3; u++) {
+            eval("grupo" + (i)).innerHTML += `
                 <div class="habilidade">
                         <img src="../../assets/imgs/Habilidades/${classInformation[0].nomeClasse}/${skills[total].nomeSkill}.png" alt="">
-                        <span>${skills[total].nomeSkill.replaceAll("_"," ")}</span>
+                        <span>${skills[total].nomeSkill.replaceAll("_", " ")}</span>
                     </div>
                 `;
-                total++
-            }
+            total++
         }
+    }
 
-    }, 500)
+}, 400)
