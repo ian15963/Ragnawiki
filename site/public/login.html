@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>Ragnawiki</title>
 
     <script src="./js/sessao.js"></script>
 
@@ -29,7 +29,7 @@
                     <label for="senha">Senha: </label><br>
                     <input type="password" id="senha">
             </div>
-            <p style="margin-bottom: 10px; font-size: 13px;">Não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            <p style="margin-bottom: 10px; font-size: 15px;">Não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
             <button onclick="entrar()">Entrar</button>
         </div>
     </div>
@@ -37,11 +37,20 @@
 
     
 </body>
-
-</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-
+    const userNotFound = () =>{
+        Swal.fire({
+            title: "Email ou Senha Inválidos",
+            width: 500,
+            padding: "3em",
+            color: "red",
+            background: "#fff",
+            imageUrl: "../assets/ranger.gif",
+            // imageWidth: 200
+        })
+    }
 
     function entrar() {
 
@@ -57,16 +66,17 @@
                 emailServer: emailUsuario,
                 senhaServer: senhaUsuario
             })
-        }).then((data) => {            
+        }).then((data) => {       
+            if(data.status == 403){
+                userNotFound()
+            }     
             if(data.ok){
                 data.json().then(
                     json => {
                         sessionStorage.setItem("autenticado" ,json.autenticado)
                         sessionStorage.setItem("id", json.resultado.id)
                 });
-                setTimeout(() => {
                     window.location.href = "/builds"
-                }, 1000)
             }else{
                 console.log("Não foi possível autenticar o usuário, verifique se o email ou senha inseridos são validos")
             }
@@ -75,3 +85,5 @@
 
 
 </script>
+</html>
+

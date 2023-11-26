@@ -148,11 +148,13 @@ const deleteSuccessfully = (idBuild) =>{
       title: `Tem certeza que deseja deletar sua build?`,
       width: 500,
       padding: "3em",
-      color: "#716add",
+      color: "#00259C",
       showDenyButton: true,
       confirmButtonText: "Deletar",
+      confirmButtonColor: "#00259C",
       denyButtonText: `Cancelar`,
-      focusConfirm: false
+      focusConfirm: false,
+      imageUrl: "../assets/RO_Poring2911.webp"
     }).then((result) => {
       if(result.isConfirmed){
         fetch(`/build/delete/${idBuild}`, {
@@ -163,7 +165,11 @@ const deleteSuccessfully = (idBuild) =>{
         }).then(() =>{
           console.log("build deletada")
         })
-        Swal.fire("Build deletada com sucesso", "", "success").then(() => {
+        Swal.fire(
+          {title: "Build deletada com sucesso", 
+          icon: "success", 
+          confirmButtonColor: "#00259C"
+        }).then(() => {
           window.location = "/builds"
 
         }

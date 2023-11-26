@@ -33,10 +33,7 @@ const updatedSuccessfully = (texto) =>{
         background: "#fff",
         imageUrl: "../assets/kafra.gif",
         imageWidth: 150,
-      }).then(() => {
-          window.location = `/build/${reqParam}`    
-      }
-      );
+      })
 }
 
 const getClasses = () => {

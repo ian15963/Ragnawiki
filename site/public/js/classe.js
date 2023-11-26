@@ -3,6 +3,21 @@ var classInformation = []
 const pathArray = window.location.pathname.split("/");
 const reqParam = pathArray[pathArray.length - 1];
 
+const pageNotFound = () =>{
+    Swal.fire({
+        title: "Página não encontrada",
+        width: 700,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff",
+        imageUrl: "../assets/113-kafra_05.webp",
+        imageWidth: 300
+      }).then(() => {
+          window.location = `/classes`
+      }
+      );
+}
+
 const getSkills = () => {
 
     fetch(`/classe/skills/${reqParam}`, {
@@ -13,7 +28,6 @@ const getSkills = () => {
     }).then(data => {
         console.log(data.status)
         if (data.status == 404) {
-            window.location = `/classes`;
         }
         data.json().then(json => {
             skills = json.classe
@@ -32,19 +46,26 @@ const getAllInformation = () => {
             "Content-Type": "application/json"
         }
     }).then(data => {
+        if(data.status == 404){
+            pageNotFound();
+        }
         data.json().then(json => {
             classInformation = json.information
             console.log(json);
-        }).catch(err => console.log(err))
+        }).catch(() => pageNotFound())
     })
 
 
 }
 
+!(reqParam >= 1 && reqParam <= 59) ? "" :
 setTimeout(() => {
+    
     sprite_column.style.display = `block`;
     arte.style.maxWidth = `300px`;
 
+    document.getElementsByTagName("title")[0].innerHTML = `${classInformation[0].nomeClasse.replaceAll("_", " ")}`;
+    
     var totalSkills = skills.length
     var total = 0
     var i = 1;
@@ -113,5 +134,4 @@ setTimeout(() => {
             total++
         }
     }
-
-}, 400)
+}, 600)

@@ -2,14 +2,11 @@ CREATE DATABASE ragnawiki;
 -- DROP DATABASE ragnawiki;
 use ragnawiki;
 
-CREATE TABLE usuario(
-	
+CREATE TABLE usuario(	
     id int primary key auto_increment,
-    email varchar(45),
-    nome varchar(45),
-    sobrenome varchar(45),
+    nomeDeUsuario varchar(45),
+    email varchar(45) unique,
     senha varchar(45)
-
 );
 
 INSERT INTO usuario VALUES (null, "ian@gmail.com", "Ian", "Silva Santos", "12345");

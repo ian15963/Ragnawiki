@@ -21,9 +21,9 @@ const getAllSkills = (req, res) =>{
         if(data.length > 0){
             res.json({classe: data})
         }else if(data.length == 0){
-            res.status(404).send("Classe não encontrada na base de dados");
+            res.status(404).send({"Mensagem":"Classe não encontrada na base de dados"});
         }
-    })
+    }).catch(err => res.send(500));
 
 }
 
@@ -35,9 +35,9 @@ const getClassInformation = (req, res) => {
         if(data.length > 0){
             res.json({information: data})
         }else if(data.length == 0){
-            res.status(404).send("Não Conseguimos encontrar as informações sobre essa classe.")
+            res.status(404).send({"Mensagem":"Não Conseguimos encontrar as informações sobre essa classe."})
         }
-    })
+    }).catch(err => res.send(500));
 
 }
 

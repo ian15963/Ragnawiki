@@ -14,10 +14,12 @@ body{
 .content{
     margin: auto;
     width: 25vw;
-    height: 60vh;
+    height: auto;
     background-color: white;;
-    margin-top: 10%;
+    margin-top: 4%;
     border-radius: 15px;
+    padding-bottom: 1%;
+    margin-bottom: 1%;
 }
 
 .login-container{
@@ -56,4 +58,9 @@ body{
 .container label{
     font-size: 20px;
     font-weight: 500;
+}
+
+.validacao{
+    display: none;
+    margin: -5% 0 3%;
 }
