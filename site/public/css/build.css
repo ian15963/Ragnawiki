@@ -8,6 +8,7 @@
 body{
     display: flex;
     background-color: #171A29;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .header{
@@ -23,7 +24,7 @@ body{
 
 .header h1{
     margin:0;
-    padding: 7% 0 9% 25%; 
+    padding: 7% 0 9% 20%; 
     color: white;
     background-color: #00259C;
     width: 100%;
@@ -57,13 +58,12 @@ body{
 .build_button{
     padding: 2.3% 2.3%;
     margin-left: 36%;
-    margin-top: -3%;
+    margin-top: -5%;
     border-radius: 15px;
     font-size: 15px;
     background-color: #00259C;
     color: white;
 }
-
 
 .container{
     display: flex;
@@ -188,7 +188,7 @@ body{
 .status1{
     width: 350px;
     margin: 5% 12% 0 0;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .status1 div{
@@ -196,7 +196,7 @@ body{
 }
 
 .status2{
-    font-size: 22px;
+    font-size: 20px;
     width: 350px;
     margin: 5% 0 0 12%;
 }

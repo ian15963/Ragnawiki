@@ -8,9 +8,10 @@ const pageNotFound = () =>{
         title: "Página não encontrada",
         width: 700,
         padding: "3em",
-        color: "#716add",
+        color: "#00259C",
+        confirmButtonColor: "#00259C",
         background: "#fff",
-        imageUrl: "../assets/113-kafra_05.webp",
+        imageUrl: "../assets/ranger.gif",
         imageWidth: 300
       }).then(() => {
           window.location = `/classes`
@@ -134,4 +135,4 @@ setTimeout(() => {
             total++
         }
     }
-}, 600)
+}, 500)

@@ -45,7 +45,7 @@
                 <span id="confirmSpan" class="validacao">As Senhas não estão iguais.</span>
               </div>
           </div>
-          <p style="margin-bottom: 10px; font-size: 18px;"><a href="login.html">Voltar para o Login</a></p>
+          <p style="margin-bottom: 10px; font-size: 18px;"><a style="text-decoration: none; color: #00259C;" href="login.html">Voltar para o Login</a></p>
           <button onclick="cadastrar()">Cadastrar</button>
     </div>
   </div>
@@ -81,15 +81,15 @@
   const userNotValid = (texto) =>{
         Swal.fire({
             title: texto,
-            width: 700,
+            width: 800,
             padding: "3em",
             color: "red",
             background: "#fff",
             confirmButtonText: "OK",
-            confirmButtonColor: "#52B6FF",
-            imageUrl: "../assets/ranger.gif",
-            // imageWidth: 200
-        }).then()
+            confirmButtonColor: "#00259C",
+            imageUrl: "../assets/113-kafra_05.webp",
+            imageWidth: 300
+        })
     }
 
   const validarNomeUsuario = (nomeUser) => {

@@ -206,13 +206,29 @@ const visaoGeral = () =>{
               }]
       },
       options: {
+        scales: {
+          x: {
+            ticks: {
+              font: {
+                size: 14,
+              }
+            }
+          },
+          y: {
+            ticks: {
+              font: {
+                size: 14
+              }
+            }
+          }
+        },
         plugins: {
           title: {
             display: true,
             text: 'Atributos mais utilizados por build',
             color: "black",
             font: {
-              size: 16
+              size: 20
             }
           }
         }
@@ -230,13 +246,29 @@ const visaoGeral = () =>{
           }]
         },
         options: {
+          scales: {
+            x: {
+              ticks: {
+                font: {
+                  size: 14,
+                }
+              }
+            },
+            y: {
+              ticks: {
+                font: {
+                  size: 14
+                }
+              }
+            }
+          },
           plugins: {
             title: {
               display: true,
               text: 'Classes mais utilizadas',
               color: "black",
               font: {
-                size: 16
+                size: 20
               }
             }
           }
@@ -263,8 +295,11 @@ const visaoGeral = () =>{
 
 }
 
+const deslogar = () => {
 
+  limparSessao()
 
+}
 
 const usePagination = () =>{
     const paginationNumbers = document.getElementById("pagination-numbers");

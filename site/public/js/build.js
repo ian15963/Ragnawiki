@@ -6,7 +6,21 @@ var mainSkills = []
 const pathArray = window.location.pathname.split("/");
 const reqParam = pathArray[pathArray.length -1];
 
-
+const pageNotFound = () =>{
+    Swal.fire({
+        title: "Página não encontrada",
+        width: 700,
+        padding: "3em",
+        color: "#00259C",
+        confirmButtonColor: "#00259C",
+        background: "#fff",
+        imageUrl: "../assets/ranger.gif",
+        imageWidth: 300
+      }).then(() => {
+          window.location = `/builds`
+      }
+      );
+}
 
 const createdSuccessfully = (id) =>{
     Swal.fire({
@@ -54,28 +68,6 @@ const getClasses = () => {
 
 }
 
- const getBuild = () =>{
-
-     var idUsuario = sessionStorage.getItem("id")
-
-     reqParam == "newBuild" ? "" : 
-    fetch(`/build/getOne/${reqParam}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "id": idUsuario
-        }
-    }).then(data =>{
-        if(data.ok){
-            data.json().then(json =>{
-                buildsUsuario = json.build,
-                sessionStorage.build = JSON.stringify(json.build)
-            })
-        }
-    }).catch(err => console.log(err))
-
-}
-
 const getSkills = () => {
 
     var id = sessionStorage.getItem("id")
@@ -96,6 +88,32 @@ const getSkills = () => {
     })
 
 }
+
+ const getBuild = () =>{
+
+     var idUsuario = sessionStorage.getItem("id")
+
+     reqParam == "newBuild" ? "" : 
+    fetch(`/build/getOne/${reqParam}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "id": idUsuario
+        }
+    }).then(data =>{
+        if(data.status == 404){
+            pageNotFound()
+        }
+        data.json().then(json =>{
+            buildsUsuario = json.build,
+            sessionStorage.build = JSON.stringify(json.build)
+        }).catch((err) => {
+            console.log(err)
+            pageNotFound()
+        })
+    })
+
+ }
 
 
 //Mostrar classe Selecionada
@@ -131,6 +149,11 @@ const mostrarSkill = () => {
 
 //Requisição para salvar a build
 const saveBuild = () =>{
+
+    if(pontosDeAtributos < 0){
+        erroAoAcessar("Não é possível criar builds com pontos de atributos negativos")
+        return
+    }
 
     var idUsuario = sessionStorage.getItem("id");
     nomeDaBuild = nome.value
@@ -178,6 +201,10 @@ const saveBuild = () =>{
 // Requisição para atualizar build
 const updateAtributos = () =>{
 
+    if(pontosDeAtributos < 0){
+        erroAoAcessar("Não foi possível atualizar sua build, pois seus pontos de atributos estão negativos")
+        return
+    }
     var build = JSON.parse(sessionStorage.getItem("build"));
     var idClasse = build[0].idClasse;
     var idAtributo = build[0].idAtributo;
@@ -229,7 +256,8 @@ const updateAtributos = () =>{
 
 }
 
-setTimeout(() => {
+
+(reqParam != "newBuild" && isNaN(Number(reqParam))) ? "" : setTimeout(() => {
     
     allClasses.sort((x, y) => {
         let a = x.nome.toUpperCase();
@@ -275,11 +303,11 @@ setTimeout(() => {
     setTimeout(() => {
         mostrarSkill()
         for(var i = 0; i < mainSkills.length; i++){
-            skills.innerHTML += `<img src="../assets/imgs/Habilidades/${classes.value}/${mainSkills[i].nome}.png"/>`
+            skills.innerHTML += `<img onclick="showSkill(this)" value="${mainSkills[i].nome}" src="../assets/imgs/Habilidades/${classes.value}/${mainSkills[i].nome}.png"/>`
             habilidades.push([mainSkills[i].nome, mainSkills[i].idHabilidade])
         }
     }, 500)
-}, 1000)
+}, 600)
 
 
 //Gráfico de atributos

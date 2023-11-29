@@ -88,8 +88,10 @@ const getBuild = (req, res) =>{
     buildModel.getOne(idBuild, idUsuario).then(data => {
         if(data.length > 0){
             res.json({build: data})
+        }else if(data.length == 0){
+            res.status(404).send({"Mensagem":"Build não encontrada"})
         }
-    });
+    }).catch(err => res.sendStatus(500));
 
 }
 
@@ -177,15 +179,6 @@ const getMetricas = (req, res) => {
                     
                     console.log(resultado)
                     res.json({metricas: data, famousClass: resultado});
-
-                    // buildModel.getFamousHabilitiesPerClass(idClasse).then(resultado2 => {
-                    //     if(resultado2.length > 0){
-                    //         console.log(resultado2)
-                    //         res.json({metricas: data, famousClass: resultado, famousHability: resultado2});
-                    //     }else{
-                    //         res.json({metricas: data, famousClass: resultado, "Não encontrado": "Não foi possível encontrar skills dessa classe"});
-                    //     }
-                    // })
                 }
             })
         }

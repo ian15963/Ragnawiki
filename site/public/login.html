@@ -16,6 +16,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -23,13 +24,16 @@
     <div class="content">
         <div class="login-container">
             <div class="container">
-                <h1>Login</h1>
+                <div style="display: flex;">
+                    <a href="/" style="text-decoration: none; color: black; margin: 3% 34% 0 -25%;"><i class="fa fa-arrow-circle-left" style="font-size:30px;"></i></a>
+                    <h1>Login</h1>
+                </div>
                     <label for="email">Email: </label><br>
                     <input type="text" id="email"><br>
                     <label for="senha">Senha: </label><br>
                     <input type="password" id="senha">
             </div>
-            <p style="margin-bottom: 10px; font-size: 15px;">Não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            <p style="margin-bottom: 10px; font-size: 15px;">Não possui uma conta? <a style="text-decoration: none; color: #00259C;" href="cadastro.html">Cadastre-se</a></p>
             <button onclick="entrar()">Entrar</button>
         </div>
     </div>
@@ -43,12 +47,13 @@
     const userNotFound = () =>{
         Swal.fire({
             title: "Email ou Senha Inválidos",
-            width: 500,
+            width: 800,
             padding: "3em",
             color: "red",
+            confirmButtonColor: "#00259C",
             background: "#fff",
-            imageUrl: "../assets/ranger.gif",
-            // imageWidth: 200
+            imageUrl: "../assets/113-kafra_05.webp",
+            imageWidth: 300
         })
     }
 

@@ -7,6 +7,7 @@
 
 body{
     background-color: #171A29;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .header{
@@ -48,6 +49,7 @@ body{
     margin: 60px;
     border-radius: 15px;
 }
+
 
 .classes .texto h2{
     text-align: center;
@@ -108,7 +110,7 @@ a{
 }
 
 .aprendiz p{
-    margin-left: 4%;
+    margin-left: 2%;
 }
 
 .classe p {
@@ -149,7 +151,7 @@ a{
 }
 
 .iniciais .doram p{
-    margin-left: 17%;
+    margin-left: 5%;
 }
 
 .iniciais .aprendizes{
@@ -165,7 +167,7 @@ a{
 }
 
 .iniciais .aprendizes .aprendiz-expandida p{
-    margin-left: 13%;
+    margin-left: 8%;
 }
 
 .taekwon{
@@ -174,21 +176,38 @@ a{
 }
 
 .taekwon p{
-    margin-left: 16%;
+    margin-left: 9%;
 }
 
 .taekwon2 .evolucao-taekwon{
     border: 1px solid rgba(0, 0, 0, 0.548);
 }
 
+.taekwon2 .evolucao-taekwon img{
+    margin-left: 8%;
+}
+
+.taekwon2 .evolucao-taekwon_espiritualista{
+    border: 1px solid rgba(0, 0, 0, 0.548);
+    width: 62%;
+}
+
+.taekwon2 .evolucao-taekwon_espiritualista img{
+    margin-left: 5%;
+}
+
+.taekwon2 .evolucao-taekwon_espiritualista p{
+    margin-left: 5%;
+}
+
 .taekwon2 .evolucao-taekwon2{
     border: 1px solid rgba(0, 0, 0, 0.548);
     width: 46.5%;
+    padding-left: 5%;
 }
 
-
-.taekwon2 .evolucao-taekwon img{
-    width: 95%;
+.taekwon2 .evolucao-taekwon2 p{
+    margin-left: 0;
 }
 
 .ninja{
@@ -214,7 +233,7 @@ a{
 }
 
 .justiceiro p {
-    margin-left: 22%;
+    margin-left: 10%;
 }
 
 .super{
@@ -226,13 +245,17 @@ a{
     border: 1px solid rgba(0, 0, 0, 0.548);
 }
 
+.super img{
+    margin-left: 8%;
+}
+
 .evolucao-ninja{
-    width: 35%;
-    margin-left: -2%;
+    width: 40%;
+    margin-left: -2.5%;
 }
 
 .evolucao-ninja p{
-    margin-left: 30%;
+    margin-left: 18%;
 }
 
 .ninja2{
@@ -240,6 +263,6 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 5.9%;
+    padding: 0 6.2%;
     border: 1px solid rgba(0, 0, 0, 0.548);    
 }
