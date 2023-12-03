@@ -63,14 +63,15 @@ const getAllInformation = () => {
 setTimeout(() => {
     
     sprite_column.style.display = `block`;
-    arte.style.maxWidth = `300px`;
+    arte.style.maxWidth = `250px`;
 
     document.getElementsByTagName("title")[0].innerHTML = `${classInformation[0].nomeClasse.replaceAll("_", " ")}`;
-    
+
+    console.log(classInformation[0])
+
     var totalSkills = skills.length
     var total = 0
     var i = 1;
-    console.log(2 * skills.length / 3)
 
     titulo.innerHTML += `${classInformation[0].nomeClasse.replaceAll("_", " ")}`;
     descricao.innerHTML += `<p>${classInformation[0].descricao}</p>

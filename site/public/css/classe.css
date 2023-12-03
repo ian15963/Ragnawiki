@@ -133,15 +133,18 @@ body {
 }
 
 #sprite_table {
-    display: none;
+    display: block;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #sprite_table tbody tr {
     background-color: white;
 }
 
-#sprite_table tbody td {
+#sprite_table tbody tr td {
     text-align: center;
 }
 

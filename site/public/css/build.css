@@ -145,21 +145,30 @@ body{
 }
 
 .atributo{
-    margin: auto 20%;
+    margin: 40% 20%;
     width: 100%;
     height: 8%;
     display: flex;
     font-size: 20px;
 }
 
-.atributo input{
-    width: 25%;
-    margin-left: 10px;
-}
-
 .build-atributos{
     display: flex;
-    flex-direction: column;
+    padding: 5%;
+    width: 25%;
+}
+
+.build-atributos-inputs{
+    display: flex; 
+    flex-direction: column; 
+    width: 35%;
+    margin-top: 17%;
+}
+
+.build-atributos-inputs input{
+    margin-bottom: 32%;
+    height: 100%;
+    font-size: 16px;
 }
 
 .build-status{

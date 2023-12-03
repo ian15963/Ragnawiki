@@ -48,7 +48,7 @@ const showSkill = (valorImg) => {
         confirmButtonColor: "#00259C",
         background: "#fff",
         imageUrl: `../assets/imgs/gif/${nomeSkill}.gif`,
-        imageWidth: 400,
+        imageWidth: 500,
       });
 }
 
@@ -102,7 +102,7 @@ const salvarHabilidades = () => {
                     updatedSuccessfully("Habilidades Principais atualizadas com sucesso")
                 }
         }
-    },500)
+    },800)
     
     
     console.log(classeId, reqParam, idAtributo, idStatus, idUsuario, habilidades)

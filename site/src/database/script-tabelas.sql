@@ -9,8 +9,8 @@ CREATE TABLE usuario(
     senha varchar(45)
 );
 
-INSERT INTO usuario VALUES (null, "ian@gmail.com", "Ian", "Silva Santos", "12345");
-SELECT nome, email FROM usuario WHERE email = 'ian@gmail.com' AND senha = "12345";
+INSERT INTO usuario(nomeDeUsuario, email, senha) VALUES ('ian148', 'ian@gmail.com' ,'12345');
+INSERT INTO usuario(nomeDeUsuario, email, senha) VALUES ('zakeh1480', 'isaque@gmail.com', '123');
 
 CREATE TABLE bonus(
 	idBonus int primary key auto_increment,

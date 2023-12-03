@@ -27,7 +27,8 @@ const createdSuccessfully = (id) =>{
         title: "Build Criada Com Sucesso",
         width: 500,
         padding: "3em",
-        color: "#716add",
+        color: "#00259C",
+        confirmButtonColor: "#00259C",
         background: "#fff",
         imageUrl: "../assets/asurachampion4fd.gif",
         // imageWidth: 200
@@ -47,6 +48,10 @@ const updatedSuccessfully = (texto) =>{
         background: "#fff",
         imageUrl: "../assets/kafra.gif",
         imageWidth: 150,
+      }).then(() => {
+        if(texto == "Build Atualizada com Sucesso"){
+            window.location = `/build/${reqParam}`
+        }
       })
 }
 
@@ -307,7 +312,7 @@ const updateAtributos = () =>{
             habilidades.push([mainSkills[i].nome, mainSkills[i].idHabilidade])
         }
     }, 500)
-}, 600)
+}, 800)
 
 
 //Gráfico de atributos

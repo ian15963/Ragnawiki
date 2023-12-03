@@ -12,6 +12,12 @@ call inserirDados('Punho Supremo de Asura',120, 70, 73, 120,80, 2, 179, 239, 138
 call inserirDados('Soco Furação',100, 120, 98, 70,100, 1, 163, 168, 160, 132, 450, 385, 0, 175, 0, 1, 43);
 call inserirDados('Combo Rápido',90, 100, 120, 90,91, 1, 151, 196, 167, 157, 441, 365, 0, 175, 4, 1, 43);
 call inserirDados('Rugido do Leão',90, 100, 120, 100,80, 3, 150, 210, 167, 167, 431, 365, 1, 175, 0, 1, 43);
+call inserirDados('Arcanos',1, 64, 70, 120,120, 90, 98, 277, 134, 177, 500, 347, 28, 175, 6, 2, 37);
+call inserirDados('Meteoro Escarlate',1, 100, 80, 120,120, 32, 78, 257, 147, 179, 480, 371, 10, 175, 7, 2, 37);
+call inserirDados('Laminas de Loki',100, 120, 90, 1,100, 70, 186, 87, 156, 62, 473, 399, 22, 175, 87, 2, 39);
+call inserirDados('Laminas Retralhadoras',120, 100, 90, 1,100, 70, 186, 87, 156, 62, 473, 399, 22, 175, 87, 2, 39);
+call inserirDados('Guardião Real',110, 120, 100, 1,100, 39, 186, 77, 161, 64, 463, 392, 12, 175, 2, 2, 36);
+call inserirDados('Tempestade',1, 120, 90, 1,120, 100, 101, 101, 156, 62, 503, 405, 31, 175, 3, 2, 45);
 
 -- Requisição para as 5 classes mais utilizadas.
 SELECT c.nome, count(build.fkClasse) FROM build JOIN classe as c ON build.fkClasse = c.idClasse GROUP BY build.fkClasse 

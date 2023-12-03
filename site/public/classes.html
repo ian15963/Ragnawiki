@@ -138,7 +138,7 @@
                         <div class="ninja2">
                             <a href="/classes/57">
                                 <img src="../assets/imgs/classes/Oborosprite.png" alt="">
-                                <p>Oboro</p>
+                                <p style="margin-left: 26%;">Oboro</p>
                             </a>
                         </div>
                     </div>
@@ -195,14 +195,25 @@
         for(var i = 0; i < classes.length; i++){
 
             if(classes[i].tipo == "Classe 1"){
-                classes1.innerHTML += `
-                <div class="classe">
-                    <a href="/classes/${i+1}">
-                        <img src="../assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
-                        <p>${classes[i].nome}</p>
-                    </a>
-                </div>
+                if(classes[i].nome == "Arqueiros"){
+                    classes1.innerHTML += `
+                   <div class="classe-arqueiro">
+                        <a href="/classes/${i+1}">
+                            <img src="../assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
+                            <p>${classes[i].nome}</p>
+                        </a>
+                    </div>
             `
+                }else{
+                    classes1.innerHTML += `
+                    <div class="classe">
+                        <a href="/classes/${i+1}">
+                            <img src="../assets/imgs/classes/${classes[i].nome}sprite.png" alt="">
+                            <p>${classes[i].nome}</p>
+                        </a>
+                    </div>
+                `
+                }
             }
             if(classes[i].tipo == "Classe 2"){
                 classes2.innerHTML += `

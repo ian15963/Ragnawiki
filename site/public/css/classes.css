@@ -98,6 +98,13 @@ body{
     border: 1px solid rgba(0, 0, 0, 0.548);
 }
 
+.classes1 .classe-arqueiro{
+    padding: 0 3.25%;
+    border: 1px solid rgba(0, 0, 0, 0.548);
+    text-align: center;
+    font-weight: 600;
+}
+
 a{
     text-decoration: none;
     color: black;
@@ -263,6 +270,6 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 6.2%;
+    padding: 0 6.3%;
     border: 1px solid rgba(0, 0, 0, 0.548);    
 }
